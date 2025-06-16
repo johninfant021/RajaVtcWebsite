@@ -12,6 +12,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   </head>
   <body class="container-index">
     <header data-bs-theme="dark" >
@@ -37,19 +38,19 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
       <ul class="navbar-nav mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link" href="../index.html">Home</a>
+          <a class="nav-link" href="../index.html" data-aos="slide-down">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./about.html">About</a>
+          <a class="nav-link active" aria-current="page" data-aos="slide-down" href="./about.html">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./course.html">Course</a>
+          <a class="nav-link" href="./course.html" data-aos="slide-down">Course</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./fas.html">Facilities</a>
+          <a class="nav-link" href="./fas.html" data-aos="slide-down">Facilities</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./contact.html">Contact</a>
+          <a class="nav-link" href="./contact.html" data-aos="slide-down">Contact</a>
         </li>
       </ul>
     </div>
@@ -63,7 +64,7 @@
           <div
             class="row flex-lg-row-reverse justify-content-center g-5 py-5 pb-3 pt-0"
           >
-            <div class="col-10 col-sm-8 col-lg-6">
+            <div class="col-10 col-sm-8 col-lg-6 " >
               <img
                 src="../img/pic/MAS_7300.JPG"
                 class="d-block mx-lg-auto img-fluid"
@@ -76,6 +77,7 @@
                   border-radius: 10px;
                   box-shadow: 10px 10px 20px;
                 "
+                data-aos="fade-left"
               />
             </div>
             <div class="col-lg-6" style="text-align: center">
@@ -123,6 +125,7 @@
                   border-radius: 10px;
                   box-shadow: 10px 10px 20px;
                 "
+                data-aos="fade-right"
               />
             </div>
             <div class="col-lg-6">
@@ -173,6 +176,7 @@
                   border-radius: 10px;
                   box-shadow: 10px 10px 20px;
                 "
+                data-aos="fade-left"
               />
             </div>
           </div>
@@ -183,6 +187,7 @@
         <div class="px-4 pt-0 my-5 text-center">
           <img
             class="d-block mx-auto mb-4"
+            data-aos="zoom-in"
             src="../img/pic/20210219_095820.jpg"
             alt=""
             width="300"
@@ -224,6 +229,7 @@
               border-radius: 10px;
               box-shadow: 10px 10px 20px;
             "
+            data-aos="zoom-in"
           />
 
           <div class="col-lg-6 mx-auto">
@@ -250,6 +256,7 @@
           >
             <div class="col-10 col-sm-8 col-lg-6">
               <img
+              data-aos="fade-left"
                 src="../img/pic/MAS_7341.JPG"
                 class="d-block mx-lg-auto img-fluid"
                 alt="Bootstrap Themes"
@@ -281,6 +288,7 @@
           >
             <div class="col-10 col-sm-8 col-lg-6">
               <img
+              data-aos="fade-right"
                 src="../img/pic/WhatsApp Image 2024-11-17 at 16.23.45_ecc096d8.jpg"
                 class="d-block mx-lg-auto img-fluid"
                 alt="Bootstrap Themes"
@@ -317,6 +325,7 @@
                 <a
                   href="../files/course.html"
                   class="btn btn-primary btn-lg px-4 gap-3"
+                  style="box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;"
                   >Next</a
                 >
               </div>
@@ -522,6 +531,13 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"
       ></script>
+      <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+      <script>
+        AOS.init({
+        duration: 2000, // animation duration in ms
+        once: false      // animate only once
+  });
+</script>
     </div>
   </body>
 </html>

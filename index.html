@@ -12,14 +12,14 @@
       crossorigin="anonymous"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="./css/index.css">
-<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   </head>
   <body class="container-index">
     <header data-bs-theme="dark" >
-<nav class="navbar navbar-expand-md">
+      <nav class="navbar navbar-expand-md">
   <div class="container-fluid d-flex justify-content-between align-items-center">
     <!-- Left: Brand -->
     <a class="navbar-brand text-dark" href="./index.html">Raja Vocational Training Centre</a>
@@ -41,25 +41,24 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
       <ul class="navbar-nav mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+          <a class="nav-link active" aria-current="page" data-aos="slide-down" href="./index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./files/about.html">About</a>
+          <a class="nav-link" href="./files/about.html" data-aos="slide-down">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./files/course.html">Course</a>
+          <a class="nav-link" href="./files/course.html" data-aos="slide-down">Course</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./files/fas.html">Facilities</a>
+          <a class="nav-link" href="./files/fas.html" data-aos="slide-down">Facilities</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./files/contact.html">Contact</a>
+          <a class="nav-link" href="./files/contact.html" data-aos="slide-down">Contact</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
     </header>
     <div>
       <section>
@@ -70,20 +69,17 @@
             <div class="col-10 col-sm-8 col-lg-6">
               <img
                 src="./img/clg.jpg "
-                class="d-block mx-lg-auto img-fluid"
+                class="d-block mx-lg-auto img-fluid clg-img"
                 alt="logo"
                 style="
                   max-width: 100%;
                   height: auto;
-                  border-radius: 10px;
-                  border: 5px solid rgb(38, 38, 47);
-                  box-shadow: 10px 10px 10px;
                 "
                 loading="lazy"
               />
             </div>
             <div class="col-lg-6">
-              <div class="col-12 col-sm-12 justify-content-sm-center col-lg-12">
+              <!-- <div class="col-12 col-sm-12 justify-content-sm-center col-lg-12">
                 <img
                   src="./img/raja vocational training centre.jpg "
                   class="d-flexk mx-lg-auto img-fluid align-items-center justify-content-center"
@@ -98,10 +94,10 @@
                   "
                   loading="lazy"
                 />
-              </div>
+              </div> -->
               <p
                 class="lead fs-5"
-                style="text-align: justify; text-shadow: 0.5px 0.5px 0.5px "
+                style="text-align: justify; text-shadow: 0.5px 0.5px 0.5px;text-shadow: 0px 1px 1px #000 "
               >
                 விருதுநகர் மாவட்டம் ஸ்ரீவில்லிபுத்தூரில் இயங்கி வரும் நமது ராஜா
                 வொகேஷனல் ட்ரெயினிங் சென்டர் கடந்த 2006ம் ஆண்டு முதல் ஓய்வு பெற்ற
@@ -114,6 +110,7 @@
                 <a
                   href="./files/about.html"
                   class="btn btn-primary btn-lg px-4 me-md-2"
+                  style="box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;"
                   >More</a
                 >
               </div>
@@ -138,7 +135,7 @@
 
         <div class="row">
           <!-- First Video -->
-          <div class="col-md-6 mb-4">
+          <div class="col-md-6 mb-4" data-aos="fade-up">
             <video
               controls
               class="video w-100 mt-3"
@@ -154,7 +151,7 @@
           </div>
 
           <!-- Second Video -->
-          <div class="col-md-6 mb-4">
+          <div class="col-md-6 mb-4" data-aos="fade-up">
             <video
               controls
               class="video w-100 mt-3"
@@ -174,7 +171,7 @@
       <section>
         <div class="container col-xxl-8 px-4 py-5">
           <div class="row flex-lg-row-reverse justify-content-center align-items-center g-5 py-5">
-            <div class="col-10 col-sm-8 col-lg-6">
+            <div class="col-10 col-sm-8 col-lg-6" data-aos="fade-in">
               <img
                 src="./img/narendramodi.jpg"
                 class="d-block mx-lg-auto img-fluid"
@@ -231,30 +228,27 @@
             <img
               class="d-block mx-auto mb-4 img-fluid"
               src="./img/ncvrt.jpg"
-              alt=""
+              alt="ncvrt"
               style="
-                max-width: 100%;
                 height: auto;
-                max-width: 100%;
+                max-width: 70%;
                 height: auto;
                 border-radius: 10px;
-                border: 5px solid rgb(12, 12, 90);
-                box-shadow: 10px 10px 10px;
-              "
+box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;              "
+              data-aos="flip-left"
             />
             <img
               class="d-block mx-auto mb-4 .img-fluid"
               src="./img/ncvrt1.jpg"
-              alt=""
+              alt="ncvrt"
               style="
                 max-width: 100%;
-                height: auto;
-                max-width: 100%;
-                height: auto;
+                height: 150px;
                 border-radius: 10px;
-                border: 5px solid rgb(6, 112, 108);
-                box-shadow: 10px 10px 10px;
+                border: 2px solid rgb(6, 112, 108);
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
               "
+              data-aos="flip-right"
             />
             <h1
               class="display-5 fw-bold text-body-emphasis"
@@ -297,10 +291,12 @@
                 <a
                   href="https://www.ncvrtindia.org/"
                   class="btn btn-primary btn-lg px-4 gap-3"
+                  style="box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;"
                   >More Info About NCVRT</a
                 >
                 <a
                   href="./files/about.html"
+                  style="box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;"
                   class="btn btn-primary btn-lg px-4 gap-3"
                   >Next</a
                 >
@@ -525,6 +521,14 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"
       ></script>
+      <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+      <script>
+        AOS.init({
+        duration: 2000, // animation duration in ms
+        once: false      // animate only once
+  });
+</script>
+
     </div>
   </body>
 </html>
