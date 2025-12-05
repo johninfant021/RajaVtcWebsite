@@ -21,6 +21,12 @@
       --nav-max-width: 1400px;
     }
 
+    /* --- GLOBAL SCROLL FIX --- */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -28,13 +34,12 @@
       background-color: #ffffff;
       color: var(--dark);
       padding-top: 100px; 
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    /* --- FLOATING NAVBAR --- */
+    /* --- FLOATING NAVBAR (DESKTOP) --- */
     .navbar-custom {
       position: fixed;
       top: 20px; 
@@ -42,12 +47,12 @@
       transform: translateX(-50%);
       width: var(--nav-width);
       max-width: var(--nav-max-width);
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.90);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(0, 0, 0, 0.05);
-      border-radius: 100px;
-      padding: 1.2rem 2rem; 
+      border-radius: 100px; 
+      padding: 1rem 2rem; 
       box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
       z-index: 1000;
       transition: all 0.3s ease;
@@ -56,6 +61,7 @@
     .navbar-custom.scrolled {
       top: 10px;
       padding: 0.8rem 2rem;
+      background: rgba(255, 255, 255, 0.98);
       box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
     }
 
@@ -64,6 +70,7 @@
       font-size: 1.5rem; 
       color: var(--primary) !important;
       letter-spacing: -0.5px;
+      transition: opacity 0.3s ease; /* Smooth fade effect */
     }
 
     .nav-link {
@@ -92,6 +99,133 @@
       transform: translateY(-2px);
       background-color: var(--primary-light);
     }
+
+    /* --- MOBILE RESPONSIVE FIXES --- */
+    .navbar-toggler {
+      border: none;
+      padding: 0;
+      color: var(--primary);
+      outline: none;
+      box-shadow: none !important;
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234338ca' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    @media (max-width: 991px) {
+      body { padding-top: 85px; }
+
+      .navbar-custom {
+        width: 94%;
+        padding: 0.6rem 1.2rem; 
+        top: 10px;
+        border-radius: 20px; 
+      }
+
+      /* Base Mobile Header Layout */
+      .navbar-custom .container-fluid {
+        display: flex;
+        flex-wrap: nowrap !important; 
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .navbar-brand {
+        font-size: 1.1rem; 
+        white-space: normal; 
+        line-height: 1.2;
+        max-width: 80%;
+        margin-right: 5px;
+        display: block; /* Default visible */
+      }
+      
+      .navbar-toggler { flex-shrink: 0; }
+
+      /* --- NEW: HIDE BRAND WHEN MENU IS OPEN --- */
+      /* This class 'menu-open' is added via JS below */
+      .navbar-custom.menu-open .navbar-brand {
+        display: none !important; /* Hide text */
+      }
+      
+      .navbar-custom.menu-open .container-fluid {
+        justify-content: flex-end; /* Push hamburger to right */
+      }
+
+      .navbar-collapse {
+        margin-top: 0.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid #f1f5f9;
+        max-height: 80vh; 
+        overflow-y: auto;
+      }
+
+      .navbar-nav { text-align: center; gap: 8px; }
+      .nav-link { font-size: 1.1rem; padding: 8px 0 !important; }
+      
+      .btn-nav-cta {
+        width: 100%;
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding: 10px !important;
+      }
+
+      /* Content Sizing */
+      .hero-text-container { padding-left: 0; margin-top: 2rem; text-align: center; }
+      .lead-text { font-size: 1.05rem !important; text-align: justify; }
+      .ncvrt-heading, .aim-heading, .section-title-center { font-size: 2rem !important; text-align: center; }
+      .ncvrt-content, .aim-text { font-size: 1rem !important; }
+      .section-ncvrt, .section-aim, .section-interview { padding: 3rem 0; }
+      .image-wrapper { margin: 0 10px; }
+
+      /* --- FOOTER ALIGNMENT FIX --- */
+      .footer-section { 
+        text-align: center !important; 
+        padding: 3rem 0 2rem 0;
+      }
+      .footer-brand { display: block; margin: 0 auto 1rem auto; }
+      
+      /* Reset list padding to ensure perfect centering */
+      .footer-links {
+        padding-left: 0; 
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      
+      .footer-links li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .col-lg-4.d-flex { align-items: center !important; }
+      
+      /* Stack Icon and Text Centered */
+      .footer-contact li {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        text-align: center;
+        gap: 8px;
+        margin-bottom: 1.5rem;
+      }
+      
+      .contact-icon-box {
+        margin-bottom: 0;
+        width: 40px; 
+        height: 40px;
+        background: rgba(255,255,255,0.1); 
+      }
+      
+      .footer-section .col-lg-4 { margin-bottom: 2rem; }
+    }
+
 
     /* --- HERO SECTION --- */
     .hero-section {
@@ -443,28 +577,6 @@
       color: #64748b;
       font-size: 0.9rem;
     }
-
-    /* Mobile Responsive */
-    .navbar-toggler { border: none; padding: 0; }
-    .navbar-toggler:focus { box-shadow: none; }
-
-    @media (max-width: 991px) {
-      body { padding-top: 85px; }
-      .navbar-custom { width: 94%; padding: 0.8rem; top: 10px; border-radius: 20px; }
-      .navbar-collapse { margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9; }
-      .btn-nav-cta { width: 100%; text-align: center; margin-top: 15px; }
-
-      .hero-text-container { padding-left: 0; margin-top: 2rem; }
-      .lead-text, .ncvrt-content { font-size: 1.15rem; }
-      .image-wrapper { margin: 0 10px; }
-      
-      .ncvrt-heading { font-size: 2.2rem; text-align: center; }
-      .section-ncvrt, .section-aim, .section-interview { padding: 2rem 0; }
-      
-      /* Mobile Footer */
-      .footer-section { text-align: left; }
-      .footer-desc { margin-bottom: 1rem; }
-    }
   </style>
 </head>
 <body>
@@ -484,7 +596,7 @@
             <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="/course.html">Courses</a></li>
             <li class="nav-item"><a class="nav-link" href="/fas.html">Facilities</a></li>
-            <li class="nav-item ms-lg-3">
+            <li class="nav-item ms-lg-3 w-100-mobile">
               <a class="nav-link btn-nav-cta" href="/contact.html">Contact Us</a>
             </li>
           </ul>
@@ -699,6 +811,19 @@
         navbar.classList.remove('scrolled');
       }
     });
+
+    // --- NEW: Toggle Logic to hide Brand Name when menu is open ---
+    const navCollapse = document.getElementById('navbarContent');
+    const navbar = document.querySelector('.navbar-custom');
+
+    if(navCollapse && navbar) {
+      navCollapse.addEventListener('show.bs.collapse', function () {
+        navbar.classList.add('menu-open');
+      });
+      navCollapse.addEventListener('hide.bs.collapse', function () {
+        navbar.classList.remove('menu-open');
+      });
+    }
   </script>
 </body>
 </html>
