@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses - Raja Vocational Training Centre</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+  <style>
+    :root {
+      --primary: #4338ca;
+      --primary-light: #6366f1;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --card-bg: #ffffff;
+      --nav-width: 96%;
+      --nav-max-width: 1400px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      /* Subtle Modern Background Gradient */
+      background: radial-gradient(circle at 0% 0%, #eef2ff 0%, #f8fafc 100%);
+      color: var(--dark);
+      padding-top: 100px; 
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* --- FLOATING NAVBAR (Preserved) --- */
+    .navbar-custom {
+      position: fixed;
+      top: 20px; 
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--nav-width);
+      max-width: var(--nav-max-width);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 100px;
+      padding: 1.2rem 2rem; 
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-custom.scrolled {
+      top: 10px;
+      padding: 0.8rem 2rem;
+      box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.5rem; 
+      color: var(--primary) !important;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-link {
+      color: #475569 !important;
+      font-weight: 700;
+      font-size: 1.1rem; 
+      padding: 0.5rem 1.2rem !important;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary) !important;
+    }
+
+    .btn-nav-cta {
+      background: var(--primary);
+      color: white !important;
+      padding: 0.75rem 2rem !important;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      box-shadow: 0 4px 15px rgba(67, 56, 202, 0.25);
+      transition: transform 0.2s;
+    }
+
+    .btn-nav-cta:hover {
+      transform: translateY(-2px);
+      background-color: var(--primary-light);
+    }
+
+    /* --- PAGE HEADER STYLING --- */
+    .page-header {
+      text-align: center;
+      padding: 4rem 0 3rem 0;
+      position: relative;
+    }
+
+    /* Decorative background blur behind title */
+    .page-header::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: var(--primary-light);
+      filter: blur(100px);
+      opacity: 0.15;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    .page-title {
+      font-size: 4rem;
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 0.8rem;
+      /* Richer Gradient Text */
+      background: linear-gradient(135deg, #1e293b 0%, #4338ca 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-subtitle::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* --- PREMIUM COURSE CARDS --- */
+    .course-section {
+      padding: 2rem 0 5rem 0;
+    }
+
+    .course-card-modern {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255,255,255,0.5);
+      display: flex;
+      flex-direction: column;
+      /* Bottom Accent Line (Hidden by default) */
+      border-bottom: 4px solid transparent;
+    }
+
+    .course-card-modern:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(67, 56, 202, 0.15);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Floating Glass Icon Box */
+    .course-icon-box {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.8rem;
+      color: var(--primary);
+      font-size: 2rem;
+      transition: all 0.4s ease;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8);
+    }
+
+    .course-card-modern:hover .course-icon-box {
+      background: var(--primary);
+      color: white;
+      transform: rotate(-10deg) scale(1.1);
+      box-shadow: 0 10px 20px rgba(67, 56, 202, 0.3);
+    }
+
+    .course-title {
+      font-weight: 800;
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      color: var(--dark);
+    }
+
+    .course-details {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .course-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: auto;
+      transition: all 0.3s;
+    }
+
+    .course-card-modern:hover .course-badge {
+      background: #eef2ff;
+      color: var(--primary);
+    }
+
+    /* --- GALLERY / CAROUSEL STYLING --- */
+    .gallery-section {
+      padding: 4rem 0 6rem 0;
+      background: white;
+      /* Curved Top Separation */
+      border-radius: 60px 60px 0 0;
+      box-shadow: 0 -20px 40px rgba(0,0,0,0.03);
+    }
+
+    .section-heading {
+      font-weight: 800;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--dark);
+    }
+
+    /* Frame Styling for Carousel */
+    .modern-carousel-frame {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 15px;
+      background: white;
+      border-radius: 30px;
+      box-shadow: 
+        0 20px 60px -10px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(0,0,0,0.05); /* Border ring */
+    }
+
+    .carousel-inner {
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+      transition: transform 6s ease; /* Slow zoom effect */
+    }
+
+    .carousel-item.active img {
+      transform: scale(1.1); /* Ken Burns Effect */
+    }
+
+    /* Custom Nav Arrows */
+    .carousel-control-prev, .carousel-control-next {
+      width: 5%;
+      opacity: 0; /* Hidden until hover */
+      transition: opacity 0.3s;
+    }
+    
+    .modern-carousel-frame:hover .carousel-control-prev,
+    .modern-carousel-frame:hover .carousel-control-next {
+      opacity: 1;
+    }
+
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+      background-color: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      background-size: 50%;
+      width: 3rem;
+      height: 3rem;
+      filter: invert(1) grayscale(100); /* Dark arrows */
+    }
+
+    /* --- FOOTER STYLING (Preserved) --- */
+    .footer-section {
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 5rem 0 2rem 0;
+      margin-top: auto;
+      position: relative;
+    }
+
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), #a855f7, var(--primary));
+    }
+
+    .footer-brand {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      display: inline-block;
+      text-decoration: none;
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .footer-desc {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 90%;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .social-btn:hover {
+      background: #E1306C;
+      transform: translateY(-3px);
+      color: white;
+    }
+
+    .footer-heading {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .footer-links { list-style: none; padding: 0; margin: 0; }
+    .footer-links li { margin-bottom: 1rem; }
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+    }
+    .footer-links a:hover { color: var(--primary-light); transform: translateX(8px); }
+    .footer-links a::before { content: '›'; opacity: 0; margin-right: 5px; transition: opacity 0.3s; }
+    .footer-links a:hover::before { opacity: 1; }
+
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 1.2rem;
+      color: #cbd5e1;
+    }
+
+    .contact-icon-box {
+      width: 35px;
+      height: 35px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--primary-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 991px) {
+      body { padding-top: 85px; }
+      .navbar-custom { width: 94%; padding: 0.8rem; top: 10px; border-radius: 20px; }
+      .navbar-collapse { margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9; }
+      .btn-nav-cta { width: 100%; text-align: center; margin-top: 15px; }
+      
+      .page-title { font-size: 2.8rem; }
+      .footer-section { text-align: left; }
+      .carousel-item img { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">Raja Vocational Training Centre</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/course.html">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="/fas.html">Facilities</a></li>
+            <li class="nav-item ms-lg-3">
+              <a class="nav-link btn-nav-cta" href="/contact.html">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow-1">
+    
+    <div class="page-header" data-aos="fade-up">
+      <h1 class="page-title">Our Courses</h1>
+      <div class="page-subtitle">Job Oriented Vocational Training</div>
+    </div>
+
+    <section class="course-section">
+      <div class="container">
+        <div class="row g-4">
+          
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="course-card-modern">
+              <div class="course-icon-box"><i class="bi bi-heart-pulse-fill"></i></div>
+              <h3 class="course-title">Diploma in Hospital Nursing & Midwifery</h3>
+              <p class="course-details">Comprehensive training in nursing care, patient management, and midwifery practices.</p>
+              <div class="course-badge">Healthcare</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+            <div class="course-card-modern">
+              <div class="course-icon-box"><i class="bi bi-eyedropper"></i></div>
+              <h3 class="course-title">Diploma in Medical Laboratory Technology</h3>
+              <p class="course-details">Learn diagnostic procedures, lab equipment handling, and sample analysis.</p>
+              <div class="course-badge">Laboratory</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="course-card-modern">
+              <div class="course-icon-box"><i class="bi bi-scissors"></i></div>
+              <h3 class="course-title">Diploma in Operation Theatre Technology</h3>
+              <p class="course-details">Specialized training for supporting surgical teams and managing OT equipment.</p>
+              <div class="course-badge">Surgical</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250">
+            <div class="course-card-modern">
+              <div class="course-icon-box"><i class="bi bi-lungs-fill"></i></div>
+              <h3 class="course-title">Diploma in Anesthesia Technology</h3>
+              <p class="course-details">Focus on anesthesia administration support and patient monitoring during surgery.</p>
+              <div class="course-badge">Specialized</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="course-card-modern">
+              <div class="course-icon-box"><i class="bi bi-book-fill"></i></div>
+              <h3 class="course-title">Diploma in Pre-Primary Teacher Training</h3>
+              <p class="course-details">Develop skills in early childhood education and classroom management.</p>
+              <div class="course-badge">Education</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350">
+            <div class="course-card-modern">
+              <div class="course-icon-box"><i class="bi bi-airplane-fill"></i></div>
+              <h3 class="course-title">Diploma in Airline Management</h3>
+              <p class="course-details">Training in ground operations, customer service, and aviation fundamentals.</p>
+              <div class="course-badge">Aviation</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="course-card-modern">
+              <div class="course-icon-box"><i class="bi bi-globe-americas"></i></div>
+              <h3 class="course-title">PG Diploma in Airline & Airport Management</h3>
+              <p class="course-details">Advanced management studies for airport operations and airline administration.</p>
+              <div class="course-badge">Post Graduate</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        <h2 class="section-heading">Campus Life & Facilities</h2>
+        
+        <div class="modern-carousel-frame" data-aos="zoom-in">
+          <div id="courseCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="../img/hall 1.jpg" alt="Hall 1">
+              </div>
+              <div class="carousel-item">
+                <img src="../img/hall 2.jpg" alt="Hall 2">
+              </div>
+              <div class="carousel-item">
+                <img src="../img/dhnm 1.jpg" alt="Nursing Class">
+              </div>
+              <div class="carousel-item">
+                <img src="../img/dhnm 2.jpg" alt="Practical Session">
+              </div>
+              <div class="carousel-item">
+                <img src="../img/dhnm lab 1.jpg" alt="Lab 1">
+              </div>
+              <div class="carousel-item">
+                <img src="../img/dhnm lab.jpg" alt="Advanced Lab">
+              </div>
+              <div class="carousel-item">
+                <img src="../img/dmlt 1.jpg" alt="DMLT Class">
+              </div>
+              <div class="carousel-item">
+                <img src="../img/dmlt lab.jpg" alt="DMLT Lab">
+              </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#courseCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#courseCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-section">
+    <div class="container">
+      <div class="row gy-5">
+        
+        <div class="col-lg-4" data-aos="fade-right">
+          <a href="#" class="footer-brand">Raja VTC</a>
+          <p class="footer-desc">
+            Empowering the next generation with practical vocational skills and technical knowledge. 
+            Join us to build a sustainable and successful future in Srivilliputhur.
+          </p>
+          
+          <div class="social-links mt-3">
+            <a href="https://www.instagram.com/raja_vtc__?igsh=am9lNG53Z21tbHBw" target="_blank" class="social-btn">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-flex flex-column align-items-lg-center" data-aos="fade-up">
+          <div>
+            <h5 class="footer-heading">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/about.html">About Us</a></li>
+              <li><a href="/course.html">Courses</a></li>
+              <li><a href="/fas.html">Facilities</a></li>
+              <li><a href="/contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4" data-aos="fade-left">
+          <h5 class="footer-heading">Get In Touch</h5>
+          <ul class="footer-links footer-contact">
+            <li>
+              <div class="contact-icon-box"><i class="bi bi-geo-alt-fill"></i></div>
+              <span>TSV Nagar, Srivilliputhur, Virudhunagar District, Tamilnadu</span>
+            </li>
+            <li>
+              <div class="contact-icon-box"><i class="bi bi-telephone-fill"></i></div>
+              <span>+91 88700 64046</span>
+            </li>
+            <li>
+              <div class="contact-icon-box"><i class="bi bi-envelope-fill"></i></div>
+              <span>rajavtc20@gmail.com</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="mb-0">&copy; 2025 Raja Vocational Training Centre. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: false, mirror: true });
+    
+    // Navbar Scroll Logic
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-custom');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
