@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Raja Vocational Training Centre</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- Modern Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+  <style>
+    :root {
+      --primary: #4338ca;
+      --primary-light: #6366f1;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --section-bg: #f8fafc;
+      --nav-width: 96%;
+      --nav-max-width: 1400px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: var(--dark);
+      padding-top: 100px; 
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* --- FLOATING NAVBAR --- */
+    .navbar-custom {
+      position: fixed;
+      top: 20px; 
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--nav-width);
+      max-width: var(--nav-max-width);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 100px;
+      padding: 1.2rem 2rem; 
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-custom.scrolled {
+      top: 10px;
+      padding: 0.8rem 2rem;
+      box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.5rem; 
+      color: var(--primary) !important;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-link {
+      color: #475569 !important;
+      font-weight: 700;
+      font-size: 1.1rem; 
+      padding: 0.5rem 1.2rem !important;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary) !important;
+    }
+
+    .btn-nav-cta {
+      background: var(--primary);
+      color: white !important;
+      padding: 0.75rem 2rem !important;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      box-shadow: 0 4px 15px rgba(67, 56, 202, 0.25);
+      transition: transform 0.2s;
+    }
+
+    .btn-nav-cta:hover {
+      transform: translateY(-2px);
+      background-color: var(--primary-light);
+    }
+
+    /* --- PAGE HEADER --- */
+    .page-header {
+      padding: 4rem 0 3rem 0;
+      text-align: center;
+    }
+
+    .page-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-subtitle {
+      font-size: 1.1rem;
+      color: #64748b;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* --- CONTACT INFO CARDS --- */
+    .info-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      height: 100%;
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .icon-box {
+      width: 60px;
+      height: 60px;
+      background: #eef2ff;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .info-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .info-text {
+      color: #64748b;
+      font-size: 1rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* --- CONTACT FORM --- */
+    .contact-form-wrapper {
+      background: white;
+      padding: 3rem;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      background-color: #f8fafc;
+      transition: all 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(67, 56, 202, 0.1);
+      background-color: white;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      padding: 1rem;
+      border-radius: 12px;
+      border: none;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 10px 20px rgba(67, 56, 202, 0.2);
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(67, 56, 202, 0.3);
+    }
+    
+    /* Submission Status Message */
+    #status-message {
+      margin-top: 15px;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+    }
+    
+    .status-success { color: #16a34a; }
+    .status-error { color: #dc2626; }
+
+    /* --- MAP SECTION --- */
+    .map-container {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      margin-bottom: 4rem;
+      height: 450px;
+      border: 5px solid white;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* --- FOOTER STYLING --- */
+    .footer-section {
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 5rem 0 2rem 0;
+      margin-top: auto;
+      position: relative;
+    }
+
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), #a855f7, var(--primary));
+    }
+
+    .footer-brand {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      display: inline-block;
+      text-decoration: none;
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .footer-desc {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 90%;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .social-btn:hover {
+      background: #E1306C;
+      transform: translateY(-3px);
+      color: white;
+    }
+
+    .footer-heading {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .footer-links { list-style: none; padding: 0; margin: 0; }
+    .footer-links li { margin-bottom: 1rem; }
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+    }
+    .footer-links a:hover { color: var(--primary-light); transform: translateX(8px); }
+    .footer-links a::before { content: '›'; opacity: 0; margin-right: 5px; transition: opacity 0.3s; }
+    .footer-links a:hover::before { opacity: 1; }
+
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 1.2rem;
+      color: #cbd5e1;
+    }
+
+    .contact-icon-box {
+      width: 35px;
+      height: 35px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--primary-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 991px) {
+      body { padding-top: 85px; }
+      .navbar-custom { width: 94%; padding: 0.8rem; top: 10px; border-radius: 20px; }
+      .navbar-collapse { margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9; }
+      .btn-nav-cta { width: 100%; text-align: center; margin-top: 15px; }
+      
+      .page-title { font-size: 2.8rem; }
+      .footer-section { text-align: left; }
+      .info-card { flex-direction: column; text-align: center; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Navigation -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">Raja Vocational Training Centre</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/course.html">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="/fas.html">Facilities</a></li>
+            <li class="nav-item ms-lg-3">
+              <a class="nav-link btn-nav-cta" href="/contact.html">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow-1">
+    
+    <!-- Page Header -->
+    <div class="page-header" data-aos="fade-up">
+      <h1 class="page-title">Get in Touch</h1>
+      <p class="page-subtitle">We'd Love to Hear From You</p>
+    </div>
+
+    <section class="container pb-5">
+      <div class="row g-5">
+        
+        <!-- Left Column: Contact Info Cards -->
+        <div class="col-lg-5">
+          <div class="d-flex flex-column gap-4">
+            
+            <!-- Address Card -->
+            <div class="info-card" data-aos="fade-right" data-aos-delay="100">
+              <div class="icon-box"><i class="bi bi-geo-alt-fill"></i></div>
+              <div>
+                <h4 class="info-title">Our Location</h4>
+                <p class="info-text">
+                  TSV Nagar,<br>
+                  Srivilliputhur - 626125,<br>
+                  Virudhunagar District, Tamilnadu.
+                </p>
+              </div>
+            </div>
+
+            <!-- Phone Card -->
+            <div class="info-card" data-aos="fade-right" data-aos-delay="200">
+              <div class="icon-box"><i class="bi bi-telephone-fill"></i></div>
+              <div>
+                <h4 class="info-title">Call Us</h4>
+                <p class="info-text">
+                  +91 88700 64046<br>
+                  Mon - Sat, 9am - 6pm
+                </p>
+              </div>
+            </div>
+
+            <!-- Email Card -->
+            <div class="info-card" data-aos="fade-right" data-aos-delay="300">
+              <div class="icon-box"><i class="bi bi-envelope-fill"></i></div>
+              <div>
+                <h4 class="info-title">Email Us</h4>
+                <p class="info-text">
+                  rajavtc20@gmail.com
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Contact Form -->
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="contact-form-wrapper">
+            <h3 class="fw-bold mb-4">Send us a Message</h3>
+            
+            <!-- FORM ID="contact-form" FOR JAVASCRIPT -->
+            <form id="contact-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Your Name</label>
+                  <!-- Added name="name" -->
+                  <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Phone Number</label>
+                  <!-- Added name="phone" -->
+                  <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Email Address</label>
+                  <!-- Added name="email" -->
+                  <input type="email" name="email" class="form-control" placeholder="name@example.com" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Subject</label>
+                  <!-- Added name="subject" -->
+                  <select name="subject" class="form-control">
+                    <option>General Inquiry</option>
+                    <option>Admission Details</option>
+                    <option>Course Information</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Message</label>
+                  <!-- Added name="message" -->
+                  <textarea name="message" class="form-control" rows="4" placeholder="How can we help you?" required></textarea>
+                </div>
+                <div class="col-12 mt-4">
+                  <button type="submit" class="btn-submit">Send Message</button>
+                </div>
+                
+                <!-- Status Message -->
+                <div id="status-message"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="container px-4">
+      <div class="map-container" data-aos="zoom-in-up">
+        <!-- Google Maps Embed for TSV Nagar, Srivilliputhur -->
+        <iframe 
+          src="https://maps.google.com/maps?q=TSV+Nagar,+Srivilliputhur&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="row gy-5">
+        
+        <!-- 1. LEFT: Brand & Description & Social -->
+        <div class="col-lg-4" data-aos="fade-right">
+          <a href="#" class="footer-brand">Raja VTC</a>
+          <p class="footer-desc">
+            Empowering the next generation with practical vocational skills and technical knowledge. 
+            Join us to build a sustainable and successful future in Srivilliputhur.
+          </p>
+          
+          <!-- Social Icons -->
+          <div class="social-links mt-3">
+            <a href="https://www.instagram.com/raja_vtc__?igsh=am9lNG53Z21tbHBw" target="_blank" class="social-btn">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. CENTER: Navigation Links -->
+        <div class="col-lg-4 d-flex flex-column align-items-lg-center" data-aos="fade-up">
+          <div>
+            <h5 class="footer-heading">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="course.html">Courses</a></li>
+              <li><a href="fas.html">Facilities</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. RIGHT: Contact Info -->
+        <div class="col-lg-4" data-aos="fade-left">
+          <h5 class="footer-heading">Get In Touch</h5>
+          <ul class="footer-links footer-contact">
+            <li>
+              <div class="contact-icon-box"><i class="bi bi-geo-alt-fill"></i></div>
+              <span>TSV Nagar, Srivilliputhur, Virudhunagar District, Tamilnadu</span>
+            </li>
+            <li>
+              <div class="contact-icon-box"><i class="bi bi-telephone-fill"></i></div>
+              <span>+91 88700 64046</span>
+            </li>
+            <li>
+              <div class="contact-icon-box"><i class="bi bi-envelope-fill"></i></div>
+              <span>rajavtc20@gmail.com</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-bottom">
+        <p class="mb-0">&copy; 2025 Raja Vocational Training Centre. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  
+  <script>
+    // Initialize AOS Animation
+    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: false, mirror: true });
+    
+    // Navbar Scroll Logic
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-custom');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // --- GOOGLE SHEETS CONNECTION SCRIPT ---
+    const form = document.getElementById('contact-form');
+    const statusMessage = document.getElementById('status-message');
+    const submitButton = document.querySelector('.btn-submit');
+
+    // PASTE YOUR WEB APP URL HERE
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzVQsIpXtMcTNC9kO3X5oYwtOJXB8LQvJCNrhlLAG89fqEVZ6OPWxzGvTiNGimU-nO6/exec'; 
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      // UI Feedback
+      submitButton.disabled = true;
+      submitButton.innerText = "Sending...";
+      statusMessage.style.display = 'block';
+      statusMessage.className = '';
+      statusMessage.innerText = "";
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+      })
+      .then(response => {
+          statusMessage.innerText = "Message Sent Successfully! We will get back to you soon.";
+          statusMessage.className = 'status-success';
+          form.reset();
+          submitButton.disabled = false;
+          submitButton.innerText = "Send Message";
+          
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            statusMessage.style.display = 'none';
+          }, 5000);
+      })
+      .catch(error => {
+          statusMessage.innerText = "Something went wrong. Please try again later.";
+          statusMessage.className = 'status-error';
+          console.error('Error!', error.message);
+          submitButton.disabled = false;
+          submitButton.innerText = "Send Message";
+      });
+    });
+  </script>
+</body>
+</html>
