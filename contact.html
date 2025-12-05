@@ -7,9 +7,7 @@
   
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <!-- Modern Font -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 
   <style>
@@ -25,12 +23,17 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    /* --- GLOBAL SCROLL FIX --- */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: #f8fafc;
       color: var(--dark);
       padding-top: 100px; 
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -66,6 +69,7 @@
       font-size: 1.5rem; 
       color: var(--primary) !important;
       letter-spacing: -0.5px;
+      transition: opacity 0.3s ease;
     }
 
     .nav-link {
@@ -212,7 +216,6 @@
       box-shadow: 0 15px 30px rgba(67, 56, 202, 0.3);
     }
     
-    /* Submission Status Message */
     #status-message {
       margin-top: 15px;
       font-weight: 600;
@@ -350,21 +353,121 @@
       font-size: 0.9rem;
     }
 
+    /* --- MOBILE RESPONSIVE TWEAKS --- */
+    .navbar-toggler {
+      border: none;
+      padding: 0;
+      color: var(--primary);
+      outline: none;
+      box-shadow: none !important;
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234338ca' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
     @media (max-width: 991px) {
       body { padding-top: 85px; }
+      
       .navbar-custom { width: 94%; padding: 0.8rem; top: 10px; border-radius: 20px; }
-      .navbar-collapse { margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9; }
+
+      /* 1. LAYOUT FIX: Keep Logo and Icon on same line initially */
+      .navbar-custom .container-fluid {
+        display: flex;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .navbar-brand {
+        font-size: 1.1rem; 
+        white-space: normal; 
+        line-height: 1.2;
+        max-width: 80%;
+        margin-right: 5px;
+        display: block;
+      }
+
+      .navbar-toggler { flex-shrink: 0; }
+
+      /* --- NEW: HIDE BRAND WHEN MENU IS OPEN --- */
+      /* This class 'menu-open' is added via JS at the bottom */
+      .navbar-custom.menu-open .navbar-brand {
+        display: none !important; /* Disappear text */
+      }
+      
+      .navbar-custom.menu-open .container-fluid {
+        justify-content: flex-end; /* Push hamburger icon to the far right */
+      }
+
+      .navbar-collapse { 
+        margin-top: 1rem; 
+        padding-top: 0.5rem; 
+        border-top: 1px solid #f1f5f9; 
+        text-align: center;
+      }
+      
       .btn-nav-cta { width: 100%; text-align: center; margin-top: 15px; }
       
-      .page-title { font-size: 2.8rem; }
-      .footer-section { text-align: left; }
+      .page-title { font-size: 2.5rem; }
+
+      /* 2. FOOTER CENTERING FIX (Mobile) */
+      .footer-section { 
+        text-align: center !important; 
+        padding: 3rem 0 2rem 0;
+      }
+
+      .footer-brand {
+        display: block;
+        margin: 0 auto 1rem auto;
+      }
+      
+      .social-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      /* Center Link Lists */
+      .footer-links { padding-left: 0; }
+      .footer-links li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .col-lg-4.d-flex {
+        align-items: center !important;
+      }
+
+      /* Contact Section: Icon on Top, Text Below */
+      .footer-contact li {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-icon-box {
+        margin-bottom: 0;
+        width: 40px; 
+        height: 40px;
+        background: rgba(255,255,255,0.1); 
+      }
+      
+      .footer-section .col-lg-4 {
+        margin-bottom: 2rem;
+      }
+      
+      /* Info Card adjustments for mobile */
       .info-card { flex-direction: column; text-align: center; align-items: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Navigation -->
   <header>
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
@@ -389,10 +492,8 @@
     </nav>
   </header>
 
-  <!-- Main Content -->
   <main class="flex-grow-1">
     
-    <!-- Page Header -->
     <div class="page-header" data-aos="fade-up">
       <h1 class="page-title">Get in Touch</h1>
       <p class="page-subtitle">We'd Love to Hear From You</p>
@@ -401,11 +502,9 @@
     <section class="container pb-5">
       <div class="row g-5">
         
-        <!-- Left Column: Contact Info Cards -->
         <div class="col-lg-5">
           <div class="d-flex flex-column gap-4">
             
-            <!-- Address Card -->
             <div class="info-card" data-aos="fade-right" data-aos-delay="100">
               <div class="icon-box"><i class="bi bi-geo-alt-fill"></i></div>
               <div>
@@ -418,7 +517,6 @@
               </div>
             </div>
 
-            <!-- Phone Card -->
             <div class="info-card" data-aos="fade-right" data-aos-delay="200">
               <div class="icon-box"><i class="bi bi-telephone-fill"></i></div>
               <div>
@@ -430,7 +528,6 @@
               </div>
             </div>
 
-            <!-- Email Card -->
             <div class="info-card" data-aos="fade-right" data-aos-delay="300">
               <div class="icon-box"><i class="bi bi-envelope-fill"></i></div>
               <div>
@@ -444,32 +541,26 @@
           </div>
         </div>
 
-        <!-- Right Column: Contact Form -->
         <div class="col-lg-7" data-aos="fade-left">
           <div class="contact-form-wrapper">
             <h3 class="fw-bold mb-4">Send us a Message</h3>
             
-            <!-- FORM ID="contact-form" FOR JAVASCRIPT -->
             <form id="contact-form">
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label">Your Name</label>
-                  <!-- Added name="name" -->
                   <input type="text" name="name" class="form-control" placeholder="John Doe" required>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Phone Number</label>
-                  <!-- Added name="phone" -->
                   <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210" required>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Email Address</label>
-                  <!-- Added name="email" -->
                   <input type="email" name="email" class="form-control" placeholder="name@example.com" required>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Subject</label>
-                  <!-- Added name="subject" -->
                   <select name="subject" class="form-control">
                     <option>General Inquiry</option>
                     <option>Admission Details</option>
@@ -479,14 +570,12 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Message</label>
-                  <!-- Added name="message" -->
                   <textarea name="message" class="form-control" rows="4" placeholder="How can we help you?" required></textarea>
                 </div>
                 <div class="col-12 mt-4">
                   <button type="submit" class="btn-submit">Send Message</button>
                 </div>
                 
-                <!-- Status Message -->
                 <div id="status-message"></div>
               </div>
             </form>
@@ -496,10 +585,8 @@
       </div>
     </section>
 
-    <!-- Map Section -->
     <section class="container px-4">
       <div class="map-container" data-aos="zoom-in-up">
-        <!-- Google Maps Embed for TSV Nagar, Srivilliputhur -->
         <iframe 
           src="https://maps.google.com/maps?q=TSV+Nagar,+Srivilliputhur&t=&z=15&ie=UTF8&iwloc=&output=embed" 
           allowfullscreen="" 
@@ -511,12 +598,10 @@
 
   </main>
 
-  <!-- FOOTER SECTION -->
   <footer class="footer-section">
     <div class="container">
       <div class="row gy-5">
         
-        <!-- 1. LEFT: Brand & Description & Social -->
         <div class="col-lg-4" data-aos="fade-right">
           <a href="#" class="footer-brand">Raja VTC</a>
           <p class="footer-desc">
@@ -524,7 +609,6 @@
             Join us to build a sustainable and successful future in Srivilliputhur.
           </p>
           
-          <!-- Social Icons -->
           <div class="social-links mt-3">
             <a href="https://www.instagram.com/raja_vtc__?igsh=am9lNG53Z21tbHBw" target="_blank" class="social-btn">
               <i class="bi bi-instagram"></i>
@@ -532,7 +616,6 @@
           </div>
         </div>
 
-        <!-- 2. CENTER: Navigation Links -->
         <div class="col-lg-4 d-flex flex-column align-items-lg-center" data-aos="fade-up">
           <div>
             <h5 class="footer-heading">Quick Links</h5>
@@ -546,7 +629,6 @@
           </div>
         </div>
 
-        <!-- 3. RIGHT: Contact Info -->
         <div class="col-lg-4" data-aos="fade-left">
           <h5 class="footer-heading">Get In Touch</h5>
           <ul class="footer-links footer-contact">
@@ -567,9 +649,8 @@
 
       </div>
 
-      <!-- Copyright -->
       <div class="footer-bottom">
-        <p class="mb-0">&copy; 2025 Raja Vocational Training Centre. All Rights Reserved.</p>
+        <p class="mb-0">© 2025 Raja Vocational Training Centre. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
@@ -591,6 +672,19 @@
       }
     });
 
+    // --- NEW: Toggle Logic to hide Brand Name when menu is open ---
+    const navCollapse = document.getElementById('navbarContent');
+    const navbar = document.querySelector('.navbar-custom');
+
+    if(navCollapse && navbar) {
+      navCollapse.addEventListener('show.bs.collapse', function () {
+        navbar.classList.add('menu-open');
+      });
+      navCollapse.addEventListener('hide.bs.collapse', function () {
+        navbar.classList.remove('menu-open');
+      });
+    }
+
     // --- GOOGLE SHEETS CONNECTION SCRIPT ---
     const form = document.getElementById('contact-form');
     const statusMessage = document.getElementById('status-message');
@@ -602,7 +696,6 @@
     form.addEventListener('submit', e => {
       e.preventDefault();
       
-      // UI Feedback
       submitButton.disabled = true;
       submitButton.innerText = "Sending...";
       statusMessage.style.display = 'block';
@@ -623,7 +716,6 @@
           submitButton.disabled = false;
           submitButton.innerText = "Send Message";
           
-          // Hide message after 5 seconds
           setTimeout(() => {
             statusMessage.style.display = 'none';
           }, 5000);
