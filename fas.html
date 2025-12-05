@@ -23,12 +23,17 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    /* --- GLOBAL SCROLL FIX --- */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: #f8fafc;
       color: var(--dark);
       padding-top: 100px; 
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -64,6 +69,7 @@
       font-size: 1.5rem; 
       color: var(--primary) !important;
       letter-spacing: -0.5px;
+      transition: opacity 0.3s ease;
     }
 
     .nav-link {
@@ -278,14 +284,113 @@
       font-size: 0.9rem;
     }
 
+    /* --- MOBILE RESPONSIVE TWEAKS --- */
+    .navbar-toggler {
+      border: none;
+      padding: 0;
+      color: var(--primary);
+      outline: none;
+      box-shadow: none !important;
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234338ca' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
     @media (max-width: 991px) {
       body { padding-top: 85px; }
+      
       .navbar-custom { width: 94%; padding: 0.8rem; top: 10px; border-radius: 20px; }
-      .navbar-collapse { margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9; }
+
+      /* 1. LAYOUT FIX: Keep Logo and Icon on same line initially */
+      .navbar-custom .container-fluid {
+        display: flex;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .navbar-brand {
+        font-size: 1.1rem; 
+        white-space: normal; 
+        line-height: 1.2;
+        max-width: 80%;
+        margin-right: 5px;
+        display: block;
+      }
+
+      .navbar-toggler { flex-shrink: 0; }
+
+      /* --- NEW: HIDE BRAND WHEN MENU IS OPEN --- */
+      /* This class 'menu-open' is added via JS at the bottom */
+      .navbar-custom.menu-open .navbar-brand {
+        display: none !important; /* Disappear text */
+      }
+      
+      .navbar-custom.menu-open .container-fluid {
+        justify-content: flex-end; /* Push hamburger icon to the far right */
+      }
+
+      .navbar-collapse { 
+        margin-top: 1rem; 
+        padding-top: 0.5rem; 
+        border-top: 1px solid #f1f5f9; 
+        text-align: center;
+      }
+      
       .btn-nav-cta { width: 100%; text-align: center; margin-top: 15px; }
       
       .page-title { font-size: 2.5rem; }
-      .footer-section { text-align: left; }
+
+      /* 2. FOOTER CENTERING FIX (Mobile) */
+      .footer-section { 
+        text-align: center !important; 
+        padding: 3rem 0 2rem 0;
+      }
+
+      .footer-brand {
+        display: block;
+        margin: 0 auto 1rem auto;
+      }
+      
+      .social-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      /* Center Link Lists */
+      .footer-links { padding-left: 0; }
+      .footer-links li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .col-lg-4.d-flex {
+        align-items: center !important;
+      }
+
+      /* Contact Section: Icon on Top, Text Below */
+      .footer-contact li {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-icon-box {
+        margin-bottom: 0;
+        width: 40px; 
+        height: 40px;
+        background: rgba(255,255,255,0.1); 
+      }
+      
+      .footer-section .col-lg-4 {
+        margin-bottom: 2rem;
+      }
     }
   </style>
 </head>
@@ -639,6 +744,19 @@
         navbar.classList.remove('scrolled');
       }
     });
+
+    // --- NEW: Toggle Logic to hide Brand Name when menu is open ---
+    const navCollapse = document.getElementById('navbarContent');
+    const navbar = document.querySelector('.navbar-custom');
+
+    if(navCollapse && navbar) {
+      navCollapse.addEventListener('show.bs.collapse', function () {
+        navbar.classList.add('menu-open');
+      });
+      navCollapse.addEventListener('hide.bs.collapse', function () {
+        navbar.classList.remove('menu-open');
+      });
+    }
   </script>
 </body>
 </html>
