@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Raja Vocational Training Centre</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+  <style>
+    :root {
+      --primary: #4338ca;
+      --primary-light: #6366f1;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --section-bg: #f8fafc;
+      --nav-width: 96%;
+      --nav-max-width: 1400px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: var(--dark);
+      padding-top: 100px; 
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* --- FLOATING NAVBAR --- */
+    .navbar-custom {
+      position: fixed;
+      top: 20px; 
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--nav-width);
+      max-width: var(--nav-max-width);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 100px;
+      padding: 1.2rem 2rem; 
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-custom.scrolled {
+      top: 10px;
+      padding: 0.8rem 2rem;
+      box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.5rem; 
+      color: var(--primary) !important;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-link {
+      color: #475569 !important;
+      font-weight: 700;
+      font-size: 1.1rem; 
+      padding: 0.5rem 1.2rem !important;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary) !important;
+    }
+
+    .btn-nav-cta {
+      background: var(--primary);
+      color: white !important;
+      padding: 0.75rem 2rem !important;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      box-shadow: 0 4px 15px rgba(67, 56, 202, 0.25);
+      transition: transform 0.2s;
+    }
+
+    .btn-nav-cta:hover {
+      transform: translateY(-2px);
+      background-color: var(--primary-light);
+    }
+
+    /* --- MODERN CONTENT STYLING --- */
+    .page-header {
+      padding: 4rem 0 3rem 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-title {
+      font-size: 4.5rem; 
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-wrapper {
+      padding: 2rem 0;
+    }
+
+    .content-card {
+      background: white;
+      padding: 3rem;
+      border-radius: 30px;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255,255,255,0.8);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 6px;
+      background: var(--primary);
+      opacity: 0.8;
+    }
+    
+    .text-modern {
+      font-size: 1.35rem;
+      line-height: 1.9;
+      color: #334155;
+      text-align: justify;
+      font-weight: 500;
+    }
+
+    .img-modern-wrapper {
+      padding: 1rem;
+    }
+
+    .img-modern {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      border-radius: 30px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transition: transform 0.4s ease;
+    }
+
+    .img-modern:hover {
+      transform: scale(1.02) translateY(-5px);
+    }
+
+    /* Next Button Section */
+    .cta-section {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .btn-action-primary {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border: none;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 25px rgba(67, 56, 202, 0.3);
+    }
+
+    .btn-action-primary:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(67, 56, 202, 0.4);
+      color: white;
+    }
+
+    /* --- FOOTER STYLING --- */
+    .footer-section {
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 5rem 0 2rem 0;
+      margin-top: auto;
+      position: relative;
+    }
+
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), #a855f7, var(--primary));
+    }
+
+    .footer-brand {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      display: inline-block;
+      text-decoration: none;
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .footer-desc {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 90%;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .social-btn:hover {
+      background: #E1306C;
+      transform: translateY(-3px);
+      color: white;
+    }
+
+    .footer-heading {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .footer-links { list-style: none; padding: 0; margin: 0; }
+    .footer-links li { margin-bottom: 1rem; }
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+    }
+    .footer-links a:hover { color: var(--primary-light); transform: translateX(8px); }
+    .footer-links a::before { content: '›'; opacity: 0; margin-right: 5px; transition: opacity 0.3s; }
+    .footer-links a:hover::before { opacity: 1; }
+
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 1.2rem;
+      color: #cbd5e1;
+    }
+
+    .contact-icon-box {
+      width: 35px;
+      height: 35px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--primary-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 991px) {
+      body { padding-top: 85px; }
+      .navbar-custom { width: 94%; padding: 0.8rem; top: 10px; border-radius: 20px; }
+      .navbar-collapse { margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #f1f5f9; }
+      .btn-nav-cta { width: 100%; text-align: center; margin-top: 15px; }
+      
+      .page-title { font-size: 3rem; }
+      .text-modern { font-size: 1.15rem; }
+      .img-modern { height: 300px; margin-bottom: 1rem; }
+      .content-card { padding: 1.5rem; }
+      
+      .footer-section { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">Raja Vocational Training Centre</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/course.html">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="/fas.html">Facilities</a></li>
+            <li class="nav-item ms-lg-3">
+              <a class="nav-link btn-nav-cta" href="/contact.html">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow-1">
+    <div class="container section-wrapper">
+      
+      <div class="page-header" data-aos="fade-up">
+        <h1 class="page-title">About Us</h1>
+        <p class="text-muted fw-semibold fs-5">Empowering Futures Since 2006</p>
+      </div>
+
+      <div class="row align-items-center gy-5 mb-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="img-modern-wrapper">
+            <img src="../img/pic/MAS_7300.png" class="img-modern" alt="Training Center" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="content-card">
+            <p class="text-modern m-0">
+              விருதுநகர் மாவட்டம் ஸ்ரீவில்லிபுத்தூரில் இயங்கி வரும் நமது ராஜா
+              வொகேஷனல் ட்ரெயினிங் சென்டர் கடந்த 2006ம் ஆண்டு முதல் ஓய்வு பெற்ற
+              சேர்மன் இன்னாசி முத்து, ஆசிரியை தெரஸ் அவர்களால் தொடங்கப்பட்டு
+              உயர்திரு சேர்மன் கிறிஸ்டோபர் சேவியர் அவர்களால் இன்று வரை
+              சிறப்பாக செயல்பட்டு வருகிறது. கடந்த 19 வருடங்களாக நமது
+              நிறுவனத்தில் மருத்துவத் தொழில்நுட்ப பயிற்சி வழங்கி வெற்றிகரமாக
+              செயல்பட்டு வருகிறது.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center gy-5 mb-5 flex-lg-row-reverse">
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="img-modern-wrapper">
+            <img src="../img/dhnm lab.jpg" class="img-modern" alt="Lab Facilities" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="content-card">
+            <p class="text-modern m-0">
+              நமது நிறுவனத்தில் காற்றோட்டமான வசதி கொண்ட வகுப்பறைகள், பேருந்து
+              வசதி, உயர்தர வசதி கொண்ட மருத்துவமனைகளில் செய்முறை
+              பயிற்சி. மாணவியர்களுக்கு தனி விடுதி வசதி, தரமான நர்சிங் செய்முறை
+              பயிற்சி கூடம், லேப் ஆய்வுக்கூடம், குளிர் ஊட்டப்பட்ட மினி
+              ஆடிட்டோரியம் மற்றும் காணொளி காட்சிக்கூடம் உள்ளிட்ட சிறப்பு
+              அம்சங்கள் இருக்கின்றன.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center gy-5 mb-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="img-modern-wrapper">
+            <img src="../img/pic/DSC_0283.JPG" class="img-modern" alt="Medical Camps" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="content-card">
+            <p class="text-modern m-0">
+              ராஜா ஸ்டுடென்ட்ஸ் அறக்கட்டளை மூலம் அரசு மருத்துவமனையுடன் இணைந்து
+              ஸ்ரீவில்லிபுத்தூர் தாலுக்கா, ராஜபாளையம் தாலுகா மற்றும் சுற்றுவட்டார
+              பகுதிகளில் ஒவ்வொரு ஆண்டும் மருத்துவ முகாம், ரத்ததான முகாம் மற்றும்
+              விழிப்புணர்வு முகாம்களை நடத்தி வருகிறது. இது மட்டுமின்றி ஏழை எளிய
+              மக்களுக்கு வருடா வருடம் பல்வேறு நலத்திட்ட உதவிகளையும் செய்து வருகிறது.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center gy-5 mb-5 flex-lg-row-reverse">
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="img-modern-wrapper">
+            <img src="../img/pic/20210219_095820.jpg" class="img-modern" alt="Training Session" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="content-card">
+            <p class="text-modern m-0">
+              நமது நிறுவனத்தில் சிறந்த ஆசிரியர்களை கொண்டு திறமையான மாணவிகளை
+              உருவாக்கி, உயர்தர வசதிகள் கொண்ட மருத்துவமனைகளான திருவனந்தபுரம்
+              ஸ்ரீகோகுலம் மருத்துவ கல்லூரி மருத்துவமனை, சென்னை மாதா
+              மருத்துவக்கல்லூரி மருத்துவமனை, மதுரை மீனாட்சி மிஷன்
+              மருத்துவமனைகளில் செய்முறை பயிற்சிகள் ஆண்டு தோறும் வழங்கப்பட்டு
+              வருகிறது.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center gy-5 mb-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="img-modern-wrapper">
+            <img src="../img/pic/IMG-20171114-WA0055.jpg" class="img-modern" alt="Award Ceremony" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="content-card">
+            <p class="text-modern m-0">
+              நமது நிறுவனத்தில் படித்து முடித்த மாணவிகளுக்கு அரசு
+              மருத்துவமனைகளிலும் (Out Sourcing Job), தனியார் மருத்துவமனைகளிலும்,
+              வெளிநாடுகளில் உள்ள மருத்துவமனைகளிலும் 100% வேலை வாய்ப்பை நமது
+              நிறுவனம் உறுதிப்படுத்தி தருகிறது. நமது நிறுவனத்திற்கு ஒவ்வொரு
+              வருடமும் Best-Archiver Award மற்றும் Best-Motivator Award
+              வழங்கப்படுகிறது.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center gy-5 mb-5 flex-lg-row-reverse">
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="img-modern-wrapper">
+            <img src="../img/pic/MAS_7341.png" class="img-modern" alt="Sports and Cultural" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="content-card">
+            <p class="text-modern m-0">
+              மாணவிகளின் தனித்திறனை மேம்படுத்த Sports, Seminar, Quiz, Cultural
+              Programme, மத்திய அரசின் கீழ் இயங்கும் ஸ்கவுட் ப்ரோக்ராம் ஆகிய
+              நிகழ்ச்சிகளையும் வழங்கி சிறப்பாக செயல்பட்டு வருகிறது.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center gy-5 mb-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="img-modern-wrapper">
+            <img src="../img/pic/WhatsApp Image 2024-11-17 at 16.23.45_ecc096d8.jpg" class="img-modern" alt="Student Welfare" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="content-card">
+            <p class="text-modern m-0">
+              மேலும் மாணவிகளை ஊக்கிவிக்கும் விதமாக இலவச ஸ்போக்கன் இங்கிலீஷ்,
+              இலவச சீருடை, இலவச மெடிக்கல் கோட், இலவச மருத்துவ உபகரணங்கள்,
+              மாணவிகளின் உடல்நலத்தை கருத்தில் கொண்டு இலவச மருத்துவ காப்பீட்டு
+              திட்டம் உள்ளிட்டவைகளையும் ராஜா ஸ்டுடென்ட்ஸ் அறக்கட்டளை சார்பில்
+              வழங்கப்பட்டு வருகிறது என்பதை அன்போடு தெரிவித்துக்கொள்கிறோம்.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section" data-aos="zoom-in">
+        <a href="/course.html" class="btn-action-primary">
+          Explore Our Courses <i class="bi bi-arrow-right-short fs-4"></i>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer-section">
+    <div class="container">
+      <div class="row gy-5">
+        
+        <div class="col-lg-4" data-aos="fade-right">
+          <a href="#" class="footer-brand">Raja VTC</a>
+          <p class="footer-desc">
+            Empowering the next generation with practical vocational skills and technical knowledge. 
+            Join us to build a sustainable and successful future in Srivilliputhur.
+          </p>
+          
+          <div class="social-links mt-3">
+            <a href="https://www.instagram.com/raja_vtc__?igsh=am9lNG53Z21tbHBw" target="_blank" class="social-btn">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 d-flex flex-column align-items-lg-center" data-aos="fade-up">
+          <div>
+            <h5 class="footer-heading">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/about.html">About Us</a></li>
+              <li><a href="/course.html">Courses</a></li>
+              <li><a href="/fas.html">Facilities</a></li>
+              <li><a href="/contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4" data-aos="fade-left">
+          <h5 class="footer-heading">Get In Touch</h5>
+          <ul class="footer-links footer-contact">
+            <li>
+              <div class="contact-icon-box"><i class="bi bi-geo-alt-fill"></i></div>
+              <span>TSV Nagar, Srivilliputhur, Virudhunagar District, Tamilnadu</span>
+            </li>
+            <li>
+              <div class="contact-icon-box"><i class="bi bi-telephone-fill"></i></div>
+              <span>+91 88700 64046</span>
+            </li>
+            <li>
+              <div class="contact-icon-box"><i class="bi bi-envelope-fill"></i></div>
+              <span>rajavtc20@gmail.com</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="mb-0">&copy; 2025 Raja Vocational Training Centre. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: false, mirror: true });
+    
+    // Navbar Scroll Logic
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-custom');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
