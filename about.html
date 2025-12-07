@@ -52,7 +52,7 @@
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(0, 0, 0, 0.05);
       border-radius: 100px;
-      padding: 1.2rem 2rem; 
+      padding: 1rem 2rem; 
       box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
       z-index: 1000;
       transition: all 0.3s ease;
@@ -69,7 +69,8 @@
       font-size: 1.5rem; 
       color: var(--primary) !important;
       letter-spacing: -0.5px;
-      transition: opacity 0.3s ease;
+      transition: all 0.3s ease;
+      white-space: nowrap;
     }
 
     .nav-link {
@@ -99,126 +100,128 @@
       background-color: var(--primary-light);
     }
 
-    /* --- MOBILE RESPONSIVE FIXES --- */
+    /* --- MOBILE RESPONSIVE NAVBAR --- */
     .navbar-toggler {
       border: none;
-      padding: 0;
+      padding: 0.5rem;
       color: var(--primary);
       outline: none;
       box-shadow: none !important;
+      order: 2;
     }
     
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234338ca' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      width: 24px;
+      height: 24px;
     }
 
     @media (max-width: 991px) {
-      body { padding-top: 85px; }
-      
+      body { 
+        padding-top: 90px; 
+      }
+
       .navbar-custom {
-        width: 94%;
-        padding: 0.6rem 1.2rem;
-        top: 10px;
+        width: 92%;
+        max-width: 100%;
+        padding: 0.75rem 1.25rem; 
+        top: 15px;
         border-radius: 20px;
       }
 
-      /* 1. LAYOUT FIX: Keep Logo and Icon on same line initially */
+      .navbar-custom.scrolled {
+        top: 10px;
+        padding: 0.65rem 1.25rem;
+      }
+
+      /* Header Layout */
       .navbar-custom .container-fluid {
         display: flex;
-        flex-wrap: nowrap !important;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
+        padding: 0;
       }
 
       .navbar-brand {
-        font-size: 1.1rem; 
-        white-space: normal; 
-        line-height: 1.2;
-        max-width: 80%;
-        margin-right: 5px;
-        display: block;
+        font-size: 1.15rem;
+        order: 1;
+        flex: 0 1 auto;
+        max-width: calc(100% - 50px);
+        padding-right: 10px;
       }
 
-      .navbar-toggler { flex-shrink: 0; }
-
-      /* --- NEW: HIDE BRAND WHEN MENU IS OPEN --- */
-      /* This class 'menu-open' is added via JS at the bottom */
-      .navbar-custom.menu-open .navbar-brand {
-        display: none !important; /* Disappear text */
-      }
-      
-      .navbar-custom.menu-open .container-fluid {
-        justify-content: flex-end; /* Push hamburger icon to the far right */
+      .navbar-toggler {
+        order: 2;
       }
 
+      /* Collapse Menu Styling */
       .navbar-collapse {
-        margin-top: 0.5rem;
+        order: 3;
+        width: 100%;
+        flex-basis: 100%;
+        margin-top: 1rem;
         padding-top: 1rem;
-        border-top: 1px solid #f1f5f9;
-        text-align: center;
+        border-top: 1px solid #e2e8f0;
       }
-      
-      .btn-nav-cta {
+
+      .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .nav-item {
         width: 100%;
         text-align: center;
-        margin-top: 10px;
-        margin-bottom: 5px;
+      }
+
+      .nav-link {
+        font-size: 1rem;
+        padding: 0.75rem 1rem !important;
+        border-radius: 10px;
+        display: block;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        background: rgba(67, 56, 202, 0.08);
+      }
+
+      .btn-nav-cta {
+        width: 100%;
+        padding: 0.85rem 1.5rem !important;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        border-radius: 12px;
+      }
+
+      /* Ensure proper stacking */
+      .ms-lg-3 {
+        margin-left: 0 !important;
       }
 
       /* Content Adjustments */
       .page-title { font-size: 2.8rem; }
       .text-modern { font-size: 1rem !important; }
-      .img-modern { height: 300px; margin-bottom: 1rem; }
+      .img-modern { height: auto; margin-bottom: 1rem; }
       .content-card { padding: 1.5rem; }
-      
-      /* 2. FOOTER CENTERING FIX (Mobile) */
-      .footer-section { 
-        text-align: center !important; 
-        padding: 3rem 0 2rem 0;
+    }
+
+    @media (max-width: 576px) {
+      .navbar-custom {
+        width: 90%;
+        padding: 0.65rem 1rem;
       }
 
-      .footer-brand {
-        display: block;
-        margin: 0 auto 1rem auto;
-      }
-      
-      .social-links {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem;
+      .navbar-brand {
+        font-size: 1rem;
       }
 
-      /* Center Link Lists */
-      .footer-links { padding-left: 0; }
-      .footer-links li {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .col-lg-4.d-flex {
-        align-items: center !important;
-      }
-
-      /* Contact Section: Icon on Top, Text Below */
-      .footer-contact li {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        gap: 8px;
-        margin-bottom: 1.5rem;
-      }
-
-      .contact-icon-box {
-        margin-bottom: 0;
-        width: 40px; 
-        height: 40px;
-        background: rgba(255,255,255,0.1); 
-      }
-      
-      .footer-section .col-lg-4 {
-        margin-bottom: 2rem;
+      .navbar-toggler-icon {
+        width: 22px;
+        height: 22px;
       }
     }
 
@@ -284,8 +287,8 @@
 
     .img-modern {
       width: 100%;
-      height: 450px;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       border-radius: 30px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
       transition: transform 0.4s ease;
@@ -434,6 +437,78 @@
       color: #64748b;
       font-size: 0.9rem;
     }
+
+    /* Mobile Footer Adjustments */
+    @media (max-width: 991px) {
+      .footer-section { 
+        text-align: center;
+        padding: 3rem 0 2rem 0;
+      }
+      
+      .footer-brand { 
+        display: block; 
+        margin: 0 auto 1rem auto; 
+      }
+      
+      .footer-desc {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .footer-links {
+        padding-left: 0; 
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      
+      .footer-links li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footer-links a::before {
+        display: none;
+      }
+
+      .col-lg-4.d-flex { 
+        align-items: center;
+        justify-content: center;
+      }
+
+      .col-lg-4.d-flex > div {
+        width: 100%;
+      }
+      
+      .footer-contact li {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        text-align: center;
+        gap: 8px;
+        margin-bottom: 1.5rem;
+      }
+      
+      .contact-icon-box {
+        margin-bottom: 0;
+        width: 40px; 
+        height: 40px;
+        background: rgba(255,255,255,0.1); 
+      }
+      
+      .footer-section .col-lg-4 { 
+        margin-bottom: 2.5rem; 
+      }
+
+      .footer-heading {
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -443,12 +518,12 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="../index.html">Raja Vocational Training Centre</a>
         
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-          <ul class="navbar-nav ms-auto align-items-center">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link active" href="/about.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="/course.html">Courses</a></li>
@@ -481,11 +556,11 @@
             <p class="text-modern m-0">
               விருதுநகர் மாவட்டம் ஸ்ரீவில்லிபுத்தூரில் இயங்கி வரும் நமது ராஜா
               வொகேஷனல் ட்ரெயினிங் சென்டர் கடந்த 2006ம் ஆண்டு முதல் ஓய்வு பெற்ற
-              சேர்மன் இன்னாசி முத்து, ஆசிரியை தெரஸ் அவர்களால் தொடங்கப்பட்டு
-              உயர்திரு சேர்மன் கிறிஸ்டோபர் சேவியர் அவர்களால் இன்று வரை
-              சிறப்பாக செயல்பட்டு வருகிறது. கடந்த 19 வருடங்களாக நமது
-              நிறுவனத்தில் மருத்துவத் தொழில்நுட்ப பயிற்சி வழங்கி வெற்றிகரமாக
-              செயல்பட்டு வருகிறது.
+              சேர்மன் இன்னாசி முத்து, ஆசிரியை தெரேச அவர்களால் தொடங்கபட்டு
+              உயர்திர சேர்மன் கிறிஸ்டோபர் சேவியர் அவர்களால் இன்று வரை
+              சிறப்பாக செயல்படுத்து வருகிறது. கடந்த 19 வருடங்களாக நமது
+              நிறுவனத்தில் மருத்துவத் தொழிலுநுடப பயிற்சி வழங்கி வெற்றிகரமாக
+              செயல்படுத்து வருகிறது.
             </p>
           </div>
         </div>
@@ -500,10 +575,10 @@
         <div class="col-lg-6" data-aos="fade-right">
           <div class="content-card">
             <p class="text-modern m-0">
-              நமது நிறுவனத்தில் காற்றோட்டமான வசதி கொண்ட வகுப்பறைகள், பேருந்து
-              வசதி, உயர்தர வசதி கொண்ட மருத்துவமனைகளில் செய்முறை
-              பயிற்சி. மாணவியர்களுக்கு தனி விடுதி வசதி, தரமான நர்சிங் செய்முறை
-              பயிற்சி கூடம், லேப் ஆய்வுக்கூடம், குளிர் ஊட்டப்பட்ட மினி
+              நமது நிறுவனத்தில் காற்றோட்டமான வசதி கொண்ட வகுப்பறைகள், பேர்னுட்
+              வசதி, உயர்தர வசதி கொண்ட மருத்துவமனைகளில் செயுமுறை
+              பயிற்சி. மாணவியர்களுக்கு தனி விடுதி வசதி, தரமான நர்சிங் செயுமுறை
+              பயிற்சி கூடம், லேப் ஆய்வுக்கூடம், குளிர் ஊட்டபட்ட மினி
               ஆடிட்டோரியம் மற்றும் காணொளி காட்சிக்கூடம் உள்ளிட்ட சிறப்பு
               அம்சங்கள் இருக்கின்றன.
             </p>
@@ -521,10 +596,10 @@
           <div class="content-card">
             <p class="text-modern m-0">
               ராஜா ஸ்டுடென்ட்ஸ் அறக்கட்டளை மூலம் அரசு மருத்துவமனையுடன் இணைந்து
-              ஸ்ரீவில்லிபுத்தூர் தாலுக்கா, ராஜபாளையம் தாலுகா மற்றும் சுற்றுவட்டார
+              ஸ்ரீவில்லிபுத்தூர் தாலுக்கா, ராஜபாளையம் தாலுக்கா மற்றும் சுற்றுவட்டார
               பகுதிகளில் ஒவ்வொரு ஆண்டும் மருத்துவ முகாம், ரத்ததான முகாம் மற்றும்
               விழிப்புணர்வு முகாம்களை நடத்தி வருகிறது. இது மட்டுமின்றி ஏழை எளிய
-              மக்களுக்கு வருடா வருடம் பல்வேறு நலத்திட்ட உதவிகளையும் செய்து வருகிறது.
+              மக்களுக்கு வருடா வருடம் பலவேறு நலத்திட்ட உதவிகளையும் செயுது வருகிறது.
             </p>
           </div>
         </div>
@@ -540,10 +615,10 @@
           <div class="content-card">
             <p class="text-modern m-0">
               நமது நிறுவனத்தில் சிறந்த ஆசிரியர்களை கொண்டு திறமையான மாணவிகளை
-              உருவாக்கி, உயர்தர வசதிகள் கொண்ட மருத்துவமனைகளான திருவனந்தபுரம்
+              உருவாக்கி, உயர்தர வசதிகள் கொண்ட மருத்துவமனைகளான திருவனந்தபரம்
               ஸ்ரீகோகுலம் மருத்துவ கல்லூரி மருத்துவமனை, சென்னை மாதா
               மருத்துவக்கல்லூரி மருத்துவமனை, மதுரை மீனாட்சி மிஷன்
-              மருத்துவமனைகளில் செய்முறை பயிற்சிகள் ஆண்டு தோறும் வழங்கப்பட்டு
+              மருத்துவமனைகளில் செயுமுறை பயிற்சிகள் ஆண்டு தோறும் வழங்கபட்டு
               வருகிறது.
             </p>
           </div>
@@ -561,10 +636,10 @@
             <p class="text-modern m-0">
               நமது நிறுவனத்தில் படித்து முடித்த மாணவிகளுக்கு அரசு
               மருத்துவமனைகளிலும் (Out Sourcing Job), தனியார் மருத்துவமனைகளிலும்,
-              வெளிநாடுகளில் உள்ள மருத்துவமனைகளிலும் 100% வேலை வாய்ப்பை நமது
+              வெளிநாட்கள் உள்ள மருத்துவமனைகளிலும் 100% வேலை வாய்ப்பை நமது
               நிறுவனம் உறுதிப்படுத்தி தருகிறது. நமது நிறுவனத்திற்கு ஒவ்வொரு
               வருடமும் Best-Archiver Award மற்றும் Best-Motivator Award
-              வழங்கப்படுகிறது.
+              வழங்கபடுகிறது.
             </p>
           </div>
         </div>
@@ -580,8 +655,8 @@
           <div class="content-card">
             <p class="text-modern m-0">
               மாணவிகளின் தனித்திறனை மேம்படுத்த Sports, Seminar, Quiz, Cultural
-              Programme, மத்திய அரசின் கீழ் இயங்கும் ஸ்கவுட் ப்ரோக்ராம் ஆகிய
-              நிகழ்ச்சிகளையும் வழங்கி சிறப்பாக செயல்பட்டு வருகிறது.
+              Programme, மத்திய அரசின் கீழ் இயங்கும் ஸ்கவுட் புரோகுராம் ஆகிய
+              நிகழ்ச்சிகளையும் வழங்கி சிறப்பாக செயல்படுத்து வருகிறது.
             </p>
           </div>
         </div>
@@ -598,9 +673,9 @@
             <p class="text-modern m-0">
               மேலும் மாணவிகளை ஊக்கிவிக்கும் விதமாக இலவச ஸ்போக்கன் இங்கிலீஷ்,
               இலவச சீருடை, இலவச மெடிக்கல் கோட், இலவச மருத்துவ உபகரணங்கள்,
-              மாணவிகளின் உடல்நலத்தை கருத்தில் கொண்டு இலவச மருத்துவ காப்பீட்டு
+              மாணவிகளின் உடலநலத்தை கருத்தில் கொண்டு இலவச மருத்துவ காப்பீட்டு
               திட்டம் உள்ளிட்டவைகளையும் ராஜா ஸ்டுடென்ட்ஸ் அறக்கட்டளை சார்பில்
-              வழங்கப்பட்டு வருகிறது என்பதை அன்போடு தெரிவித்துக்கொள்கிறோம்.
+              வழங்கபட்டு வருகிறது எனுபதை அன்போடு தெரிவித்துக்கொள்கிறோம்.
             </p>
           </div>
         </div>
@@ -686,19 +761,6 @@
         navbar.classList.remove('scrolled');
       }
     });
-
-    // --- NEW: Toggle Logic to hide Brand Name when menu is open ---
-    const navCollapse = document.getElementById('navbarContent');
-    const navbar = document.querySelector('.navbar-custom');
-
-    if(navCollapse && navbar) {
-      navCollapse.addEventListener('show.bs.collapse', function () {
-        navbar.classList.add('menu-open');
-      });
-      navCollapse.addEventListener('hide.bs.collapse', function () {
-        navbar.classList.remove('menu-open');
-      });
-    }
   </script>
 </body>
 </html>
