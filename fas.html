@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery - Raja Vocational Training Centre</title>
-  
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 
   <style>
@@ -21,38 +23,41 @@
       --nav-max-width: 1400px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    /* --- GLOBAL SCROLL FIX --- */
-    html, body {
+    html,
+    body {
       overflow-x: hidden;
       width: 100%;
     }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #f8fafc;
+      background-color: #ffffff;
       color: var(--dark);
-      padding-top: 100px; 
+      padding-top: 100px;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    /* --- FLOATING NAVBAR --- */
     .navbar-custom {
       position: fixed;
-      top: 20px; 
+      top: 20px;
       left: 50%;
       transform: translateX(-50%);
       width: var(--nav-width);
       max-width: var(--nav-max-width);
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.90);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(0, 0, 0, 0.05);
       border-radius: 100px;
-      padding: 1.2rem 2rem; 
+      padding: 1rem 2rem;
       box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
       z-index: 1000;
       transition: all 0.3s ease;
@@ -61,26 +66,29 @@
     .navbar-custom.scrolled {
       top: 10px;
       padding: 0.8rem 2rem;
+      background: rgba(255, 255, 255, 0.98);
       box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
     }
 
     .navbar-brand {
       font-weight: 800;
-      font-size: 1.5rem; 
+      font-size: 1.5rem;
       color: var(--primary) !important;
       letter-spacing: -0.5px;
-      transition: opacity 0.3s ease;
+      transition: all 0.3s ease;
+      white-space: nowrap;
     }
 
     .nav-link {
       color: #475569 !important;
       font-weight: 700;
-      font-size: 1.1rem; 
+      font-size: 1.1rem;
       padding: 0.5rem 1.2rem !important;
       transition: color 0.2s ease;
     }
 
-    .nav-link:hover, .nav-link.active {
+    .nav-link:hover,
+    .nav-link.active {
       color: var(--primary) !important;
     }
 
@@ -99,7 +107,121 @@
       background-color: var(--primary-light);
     }
 
-    /* --- PAGE HEADER --- */
+    .navbar-toggler {
+      border: none;
+      padding: 0.5rem;
+      color: var(--primary);
+      outline: none;
+      box-shadow: none !important;
+      order: 2;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234338ca' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      width: 24px;
+      height: 24px;
+    }
+
+    @media (max-width: 991px) {
+      body {
+        padding-top: 90px;
+      }
+
+      .navbar-custom {
+        width: 92%;
+        max-width: 100%;
+        padding: 0.75rem 1.25rem;
+        top: 15px;
+        border-radius: 20px;
+      }
+
+      .navbar-custom.scrolled {
+        top: 10px;
+        padding: 0.65rem 1.25rem;
+      }
+
+      .navbar-custom .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+      }
+
+      .navbar-brand {
+        font-size: 1.15rem;
+        order: 1;
+        flex: 0 1 auto;
+        max-width: calc(100% - 50px);
+        padding-right: 10px;
+      }
+
+      .navbar-toggler {
+        order: 2;
+      }
+
+      .navbar-collapse {
+        order: 3;
+        width: 100%;
+        flex-basis: 100%;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .nav-item {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-link {
+        font-size: 1rem;
+        padding: 0.75rem 1rem !important;
+        border-radius: 10px;
+        display: block;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        background: rgba(67, 56, 202, 0.08);
+      }
+
+      .btn-nav-cta {
+        width: 100%;
+        padding: 0.85rem 1.5rem !important;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        border-radius: 12px;
+      }
+
+      .ms-lg-3 {
+        margin-left: 0 !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-custom {
+        width: 90%;
+        padding: 0.65rem 1rem;
+      }
+
+      .navbar-brand {
+        font-size: 1rem;
+      }
+
+      .navbar-toggler-icon {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
     .page-header {
       padding: 4rem 0 3rem 0;
       text-align: center;
@@ -124,17 +246,16 @@
       text-transform: uppercase;
     }
 
-    /* --- VIDEO GALLERY STYLING --- */
     .video-card-modern {
       background: white;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease;
       height: 100%;
       display: flex;
       flex-direction: column;
-      border: 1px solid rgba(255,255,255,0.5);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
     .video-card-modern:hover {
@@ -144,17 +265,16 @@
 
     .video-wrapper {
       position: relative;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      width: 100%;
       background: #000;
     }
 
     .video-wrapper video {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      display: block;
+      max-height: 400px;
+      object-fit: contain;
     }
 
     .video-content {
@@ -173,7 +293,6 @@
       line-height: 1.7;
     }
 
-    /* --- FOOTER STYLING --- */
     .footer-section {
       background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
       color: white;
@@ -202,7 +321,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
+
     .footer-desc {
       color: #94a3b8;
       font-size: 1.05rem;
@@ -217,7 +336,7 @@
       justify-content: center;
       width: 40px;
       height: 40px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
       color: white;
       border-radius: 50%;
       text-decoration: none;
@@ -241,8 +360,16 @@
       text-transform: uppercase;
     }
 
-    .footer-links { list-style: none; padding: 0; margin: 0; }
-    .footer-links li { margin-bottom: 1rem; }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+
     .footer-links a {
       color: #cbd5e1;
       text-decoration: none;
@@ -251,9 +378,22 @@
       display: inline-flex;
       align-items: center;
     }
-    .footer-links a:hover { color: var(--primary-light); transform: translateX(8px); }
-    .footer-links a::before { content: '›'; opacity: 0; margin-right: 5px; transition: opacity 0.3s; }
-    .footer-links a:hover::before { opacity: 1; }
+
+    .footer-links a:hover {
+      color: var(--primary-light);
+      transform: translateX(8px);
+    }
+
+    .footer-links a::before {
+      content: '›';
+      opacity: 0;
+      margin-right: 5px;
+      transition: opacity 0.3s;
+    }
+
+    .footer-links a:hover::before {
+      opacity: 1;
+    }
 
     .footer-contact li {
       display: flex;
@@ -266,7 +406,7 @@
     .contact-icon-box {
       width: 35px;
       height: 35px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -276,7 +416,7 @@
     }
 
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding-top: 2rem;
       margin-top: 3rem;
       text-align: center;
@@ -284,67 +424,13 @@
       font-size: 0.9rem;
     }
 
-    /* --- MOBILE RESPONSIVE TWEAKS --- */
-    .navbar-toggler {
-      border: none;
-      padding: 0;
-      color: var(--primary);
-      outline: none;
-      box-shadow: none !important;
-    }
-    
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234338ca' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-
     @media (max-width: 991px) {
-      body { padding-top: 85px; }
-      
-      .navbar-custom { width: 94%; padding: 0.8rem; top: 10px; border-radius: 20px; }
-
-      /* 1. LAYOUT FIX: Keep Logo and Icon on same line initially */
-      .navbar-custom .container-fluid {
-        display: flex;
-        flex-wrap: nowrap !important;
-        align-items: center;
-        justify-content: space-between;
-      }
-      
-      .navbar-brand {
-        font-size: 1.1rem; 
-        white-space: normal; 
-        line-height: 1.2;
-        max-width: 80%;
-        margin-right: 5px;
-        display: block;
+      .page-title {
+        font-size: 2.5rem;
       }
 
-      .navbar-toggler { flex-shrink: 0; }
-
-      /* --- NEW: HIDE BRAND WHEN MENU IS OPEN --- */
-      /* This class 'menu-open' is added via JS at the bottom */
-      .navbar-custom.menu-open .navbar-brand {
-        display: none !important; /* Disappear text */
-      }
-      
-      .navbar-custom.menu-open .container-fluid {
-        justify-content: flex-end; /* Push hamburger icon to the far right */
-      }
-
-      .navbar-collapse { 
-        margin-top: 1rem; 
-        padding-top: 0.5rem; 
-        border-top: 1px solid #f1f5f9; 
+      .footer-section {
         text-align: center;
-      }
-      
-      .btn-nav-cta { width: 100%; text-align: center; margin-top: 15px; }
-      
-      .page-title { font-size: 2.5rem; }
-
-      /* 2. FOOTER CENTERING FIX (Mobile) */
-      .footer-section { 
-        text-align: center !important; 
         padding: 3rem 0 2rem 0;
       }
 
@@ -352,26 +438,42 @@
         display: block;
         margin: 0 auto 1rem auto;
       }
-      
+
+      .footer-desc {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-links {
+        padding-left: 0;
+      }
+
       .social-links {
         display: flex;
         justify-content: center;
         margin-bottom: 2rem;
       }
 
-      /* Center Link Lists */
-      .footer-links { padding-left: 0; }
       .footer-links li {
         display: flex;
         justify-content: center;
         align-items: center;
       }
 
-      .col-lg-4.d-flex {
-        align-items: center !important;
+      .footer-links a::before {
+        display: none;
       }
 
-      /* Contact Section: Icon on Top, Text Below */
+      .col-lg-4.d-flex {
+        align-items: center;
+        justify-content: center;
+      }
+
+      .col-lg-4.d-flex>div {
+        width: 100%;
+      }
+
       .footer-contact li {
         flex-direction: column;
         justify-content: center;
@@ -383,36 +485,42 @@
 
       .contact-icon-box {
         margin-bottom: 0;
-        width: 40px; 
+        width: 40px;
         height: 40px;
-        background: rgba(255,255,255,0.1); 
+        background: rgba(255, 255, 255, 0.1);
       }
-      
+
       .footer-section .col-lg-4 {
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .footer-heading {
+        text-align: center;
       }
     }
   </style>
 </head>
+
 <body>
 
   <header>
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../index.html">Raja Vocational Training Centre</a>
-        
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <a class="navbar-brand" href="./index.html">Raja Vocational Training Centre</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+          aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-          <ul class="navbar-nav ms-auto align-items-center">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="/course.html">Courses</a></li>
             <li class="nav-item"><a class="nav-link active" href="/fas.html">Facilities</a></li>
             <li class="nav-item ms-lg-3">
-              <a class="nav-link btn-nav-cta" href="contact.html">Contact Us</a>
+              <a class="nav-link btn-nav-cta" href="/contact.html">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -421,7 +529,7 @@
   </header>
 
   <main class="flex-grow-1">
-    
+
     <div class="page-header" data-aos="fade-up">
       <h1 class="page-title">Our Gallery</h1>
       <p class="page-subtitle">Moments of Achievement and Learning</p>
@@ -429,7 +537,7 @@
 
     <section class="container pb-5">
       <div class="row g-4 align-items-stretch">
-        
+
         <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
           <div class="video-card-modern">
             <div class="video-wrapper">
@@ -439,7 +547,8 @@
             </div>
             <div class="video-content">
               <p class="video-desc">
-                Hard work rewarded 🌸 Celebrating the achievements of our Nursing & MLT students as they step closer to their dreams 💫 | 2023–2025 Batch 🎓
+                Hard work rewarded 🌸 Celebrating the achievements of our Nursing & MLT students as they step closer to
+                their dreams 💫 | 2023–2025 Batch 🎓
               </p>
             </div>
           </div>
@@ -494,7 +603,8 @@
               </video>
             </div>
             <div class="video-content">
-              <p class="video-desc">Final Year Students Attend the Orientation Program On 15-11-2024 at Sree Gokulam Medical College Hospital.</p>
+              <p class="video-desc">Final Year Students Attend the Orientation Program On 15-11-2024 at Sree Gokulam
+                Medical College Hospital.</p>
             </div>
           </div>
         </div>
@@ -507,7 +617,8 @@
               </video>
             </div>
             <div class="video-content">
-              <p class="video-desc">Orientation Program On 15-11-2024 at Sree Gokulam Medical College Hospital Thiruvananthapuram.</p>
+              <p class="video-desc">Orientation Program On 15-11-2024 at Sree Gokulam Medical College Hospital
+                Thiruvananthapuram.</p>
             </div>
           </div>
         </div>
@@ -533,7 +644,8 @@
               </video>
             </div>
             <div class="video-content">
-              <p class="video-desc">Good Final Year Orientation Program On 15-11-2024 at Sree Gokulam Medical College Hospital.</p>
+              <p class="video-desc">Good Final Year Orientation Program On 15-11-2024 at Sree Gokulam Medical College
+                Hospital.</p>
             </div>
           </div>
         </div>
@@ -546,7 +658,8 @@
               </video>
             </div>
             <div class="video-content">
-              <p class="video-desc">Orientation Program Starts for Second Year Students at Sree Gokulam Medical College Hospital.</p>
+              <p class="video-desc">Orientation Program Starts for Second Year Students at Sree Gokulam Medical College
+                Hospital.</p>
             </div>
           </div>
         </div>
@@ -585,7 +698,8 @@
               </video>
             </div>
             <div class="video-content">
-              <p class="video-desc">Raja Vocational training centre and Dr Anil kumar hospital conducting free eye camp</p>
+              <p class="video-desc">Raja Vocational training centre and Dr Anil kumar hospital conducting free eye camp
+              </p>
             </div>
           </div>
         </div>
@@ -676,14 +790,14 @@
   <footer class="footer-section">
     <div class="container">
       <div class="row gy-5">
-        
+
         <div class="col-lg-4" data-aos="fade-right">
           <a href="#" class="footer-brand">Raja VTC</a>
           <p class="footer-desc">
-            Empowering the next generation with practical vocational skills and technical knowledge. 
+            Empowering the next generation with practical vocational skills and technical knowledge.
             Join us to build a sustainable and successful future in Srivilliputhur.
           </p>
-          
+
           <div class="social-links mt-3">
             <a href="https://www.instagram.com/raja_vtc__?igsh=am9lNG53Z21tbHBw" target="_blank" class="social-btn">
               <i class="bi bi-instagram"></i>
@@ -734,9 +848,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init({ duration: 800, easing: 'ease-out-cubic', once: false, mirror: true });
-    
+
     // Navbar Scroll Logic
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
       const navbar = document.querySelector('.navbar-custom');
       if (window.scrollY > 10) {
         navbar.classList.add('scrolled');
@@ -749,7 +863,7 @@
     const navCollapse = document.getElementById('navbarContent');
     const navbar = document.querySelector('.navbar-custom');
 
-    if(navCollapse && navbar) {
+    if (navCollapse && navbar) {
       navCollapse.addEventListener('show.bs.collapse', function () {
         navbar.classList.add('menu-open');
       });
@@ -759,4 +873,5 @@
     }
   </script>
 </body>
+
 </html>
