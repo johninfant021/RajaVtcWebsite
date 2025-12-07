@@ -23,7 +23,6 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* --- GLOBAL SCROLL FIX --- */
     html, body {
       overflow-x: hidden;
       width: 100%;
@@ -31,7 +30,7 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #f8fafc;
+      background-color: #ffffff;
       color: var(--dark);
       padding-top: 100px; 
       display: flex;
@@ -39,7 +38,7 @@
       min-height: 100vh;
     }
 
-    /* --- FLOATING NAVBAR --- */
+    /* --- FLOATING NAVBAR (DESKTOP) --- */
     .navbar-custom {
       position: fixed;
       top: 20px; 
@@ -47,12 +46,12 @@
       transform: translateX(-50%);
       width: var(--nav-width);
       max-width: var(--nav-max-width);
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.90);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(0, 0, 0, 0.05);
       border-radius: 100px;
-      padding: 1.2rem 2rem; 
+      padding: 1rem 2rem; 
       box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
       z-index: 1000;
       transition: all 0.3s ease;
@@ -61,6 +60,7 @@
     .navbar-custom.scrolled {
       top: 10px;
       padding: 0.8rem 2rem;
+      background: rgba(255, 255, 255, 0.98);
       box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
     }
 
@@ -69,7 +69,8 @@
       font-size: 1.5rem; 
       color: var(--primary) !important;
       letter-spacing: -0.5px;
-      transition: opacity 0.3s ease;
+      transition: all 0.3s ease;
+      white-space: nowrap;
     }
 
     .nav-link {
@@ -97,6 +98,114 @@
     .btn-nav-cta:hover {
       transform: translateY(-2px);
       background-color: var(--primary-light);
+    }
+
+    /* --- MOBILE RESPONSIVE NAVBAR --- */
+    .navbar-toggler {
+      border: none;
+      padding: 0.5rem;
+      color: var(--primary);
+      outline: none;
+      box-shadow: none !important;
+      order: 2;
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234338ca' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      width: 24px;
+      height: 24px;
+    }
+
+    @media (max-width: 991px) {
+      body { padding-top: 90px; }
+
+      .navbar-custom {
+        width: 92%;
+        max-width: 100%;
+        padding: 0.75rem 1.25rem; 
+        top: 15px;
+        border-radius: 20px;
+      }
+
+      .navbar-custom.scrolled {
+        top: 10px;
+        padding: 0.65rem 1.25rem;
+      }
+
+      .navbar-custom .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+      }
+
+      .navbar-brand {
+        font-size: 1.15rem;
+        order: 1;
+        flex: 0 1 auto;
+        max-width: calc(100% - 50px);
+        padding-right: 10px;
+      }
+
+      .navbar-toggler { order: 2; }
+
+      .navbar-collapse {
+        order: 3;
+        width: 100%;
+        flex-basis: 100%;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .nav-item {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-link {
+        font-size: 1rem;
+        padding: 0.75rem 1rem !important;
+        border-radius: 10px;
+        display: block;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        background: rgba(67, 56, 202, 0.08);
+      }
+
+      .btn-nav-cta {
+        width: 100%;
+        padding: 0.85rem 1.5rem !important;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        border-radius: 12px;
+      }
+
+      .ms-lg-3 { margin-left: 0 !important; }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-custom {
+        width: 90%;
+        padding: 0.65rem 1rem;
+      }
+
+      .navbar-brand { font-size: 1rem; }
+
+      .navbar-toggler-icon {
+        width: 22px;
+        height: 22px;
+      }
     }
 
     /* --- PAGE HEADER --- */
@@ -353,103 +462,58 @@
       font-size: 0.9rem;
     }
 
-    /* --- MOBILE RESPONSIVE TWEAKS --- */
-    .navbar-toggler {
-      border: none;
-      padding: 0;
-      color: var(--primary);
-      outline: none;
-      box-shadow: none !important;
-    }
-    
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234338ca' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-
+    /* Mobile Adjustments */
     @media (max-width: 991px) {
-      body { padding-top: 85px; }
-      
-      .navbar-custom { width: 94%; padding: 0.8rem; top: 10px; border-radius: 20px; }
-
-      /* 1. LAYOUT FIX: Keep Logo and Icon on same line initially */
-      .navbar-custom .container-fluid {
-        display: flex;
-        flex-wrap: nowrap !important;
-        align-items: center;
-        justify-content: space-between;
-      }
-      
-      .navbar-brand {
-        font-size: 1.1rem; 
-        white-space: normal; 
-        line-height: 1.2;
-        max-width: 80%;
-        margin-right: 5px;
-        display: block;
-      }
-
-      .navbar-toggler { flex-shrink: 0; }
-
-      /* --- NEW: HIDE BRAND WHEN MENU IS OPEN --- */
-      /* This class 'menu-open' is added via JS at the bottom */
-      .navbar-custom.menu-open .navbar-brand {
-        display: none !important; /* Disappear text */
-      }
-      
-      .navbar-custom.menu-open .container-fluid {
-        justify-content: flex-end; /* Push hamburger icon to the far right */
-      }
-
-      .navbar-collapse { 
-        margin-top: 1rem; 
-        padding-top: 0.5rem; 
-        border-top: 1px solid #f1f5f9; 
-        text-align: center;
-      }
-      
-      .btn-nav-cta { width: 100%; text-align: center; margin-top: 15px; }
-      
       .page-title { font-size: 2.5rem; }
-
-      /* 2. FOOTER CENTERING FIX (Mobile) */
+      
       .footer-section { 
-        text-align: center !important; 
+        text-align: center;
         padding: 3rem 0 2rem 0;
       }
-
-      .footer-brand {
-        display: block;
-        margin: 0 auto 1rem auto;
+      
+      .footer-brand { 
+        display: block; 
+        margin: 0 auto 1rem auto; 
       }
       
+      .footer-desc {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .footer-links { padding-left: 0; }
+
       .social-links {
         display: flex;
         justify-content: center;
         margin-bottom: 2rem;
       }
-
-      /* Center Link Lists */
-      .footer-links { padding-left: 0; }
+      
       .footer-links li {
         display: flex;
         justify-content: center;
         align-items: center;
       }
 
-      .col-lg-4.d-flex {
-        align-items: center !important;
+      .footer-links a::before { display: none; }
+
+      .col-lg-4.d-flex { 
+        align-items: center;
+        justify-content: center;
       }
 
-      /* Contact Section: Icon on Top, Text Below */
+      .col-lg-4.d-flex > div { width: 100%; }
+      
       .footer-contact li {
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: center; 
         text-align: center;
         gap: 8px;
         margin-bottom: 1.5rem;
       }
-
+      
       .contact-icon-box {
         margin-bottom: 0;
         width: 40px; 
@@ -457,12 +521,14 @@
         background: rgba(255,255,255,0.1); 
       }
       
-      .footer-section .col-lg-4 {
-        margin-bottom: 2rem;
-      }
+      .footer-section .col-lg-4 { margin-bottom: 2.5rem; }
+      .footer-heading { text-align: center; }
       
-      /* Info Card adjustments for mobile */
-      .info-card { flex-direction: column; text-align: center; align-items: center; }
+      .info-card { 
+        flex-direction: column; 
+        text-align: center; 
+        align-items: center; 
+      }
     }
   </style>
 </head>
@@ -471,20 +537,20 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../index.html">Raja Vocational Training Centre</a>
+        <a class="navbar-brand" href="./index.html">Raja Vocational Training Centre</a>
         
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-          <ul class="navbar-nav ms-auto align-items-center">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="/course.html">Courses</a></li>
             <li class="nav-item"><a class="nav-link" href="/fas.html">Facilities</a></li>
             <li class="nav-item ms-lg-3">
-              <a class="nav-link btn-nav-cta" href="/contact.html">Contact Us</a>
+              <a class="nav-link btn-nav-cta active" href="/contact.html">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -620,11 +686,11 @@
           <div>
             <h5 class="footer-heading">Quick Links</h5>
             <ul class="footer-links">
-              <li><a href="../index.html">Home</a></li>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="course.html">Courses</a></li>
-              <li><a href="fas.html">Facilities</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/about.html">About Us</a></li>
+              <li><a href="/course.html">Courses</a></li>
+              <li><a href="/fas.html">Facilities</a></li>
+              <li><a href="/contact.html">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -650,7 +716,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p class="mb-0">© 2025 Raja Vocational Training Centre. All Rights Reserved.</p>
+        <p class="mb-0">&copy; 2025 Raja Vocational Training Centre. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
@@ -659,10 +725,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   
   <script>
-    // Initialize AOS Animation
-    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: false, mirror: true });
+    AOS.init({ 
+      duration: 800, 
+      easing: 'ease-out-cubic', 
+      once: false, 
+      mirror: true 
+    });
     
-    // Navbar Scroll Logic
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-custom');
       if (window.scrollY > 10) {
@@ -672,25 +741,10 @@
       }
     });
 
-    // --- NEW: Toggle Logic to hide Brand Name when menu is open ---
-    const navCollapse = document.getElementById('navbarContent');
-    const navbar = document.querySelector('.navbar-custom');
-
-    if(navCollapse && navbar) {
-      navCollapse.addEventListener('show.bs.collapse', function () {
-        navbar.classList.add('menu-open');
-      });
-      navCollapse.addEventListener('hide.bs.collapse', function () {
-        navbar.classList.remove('menu-open');
-      });
-    }
-
-    // --- GOOGLE SHEETS CONNECTION SCRIPT ---
     const form = document.getElementById('contact-form');
     const statusMessage = document.getElementById('status-message');
     const submitButton = document.querySelector('.btn-submit');
 
-    // PASTE YOUR WEB APP URL HERE
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzVQsIpXtMcTNC9kO3X5oYwtOJXB8LQvJCNrhlLAG89fqEVZ6OPWxzGvTiNGimU-nO6/exec'; 
 
     form.addEventListener('submit', e => {
