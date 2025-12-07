@@ -70,7 +70,8 @@
       font-size: 1.5rem; 
       color: var(--primary) !important;
       letter-spacing: -0.5px;
-      transition: opacity 0.3s ease; /* Smooth fade effect */
+      transition: all 0.3s ease;
+      white-space: nowrap;
     }
 
     .nav-link {
@@ -100,130 +101,123 @@
       background-color: var(--primary-light);
     }
 
-    /* --- MOBILE RESPONSIVE FIXES --- */
+    /* --- MOBILE RESPONSIVE NAVBAR --- */
     .navbar-toggler {
       border: none;
-      padding: 0;
+      padding: 0.5rem;
       color: var(--primary);
       outline: none;
       box-shadow: none !important;
+      order: 2;
     }
     
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234338ca' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      width: 24px;
+      height: 24px;
     }
 
     @media (max-width: 991px) {
-      body { padding-top: 85px; }
-
-      .navbar-custom {
-        width: 94%;
-        padding: 0.6rem 1.2rem; 
-        top: 10px;
-        border-radius: 20px; 
+      body { 
+        padding-top: 90px; 
       }
 
-      /* Base Mobile Header Layout */
+      .navbar-custom {
+        width: 92%;
+        max-width: 100%;
+        padding: 0.75rem 1.25rem; 
+        top: 15px;
+        border-radius: 20px;
+      }
+
+      .navbar-custom.scrolled {
+        top: 10px;
+        padding: 0.65rem 1.25rem;
+      }
+
+      /* Header Layout */
       .navbar-custom .container-fluid {
         display: flex;
-        flex-wrap: nowrap !important; 
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
+        padding: 0;
       }
 
       .navbar-brand {
-        font-size: 1.1rem; 
-        white-space: normal; 
-        line-height: 1.2;
-        max-width: 80%;
-        margin-right: 5px;
-        display: block; /* Default visible */
-      }
-      
-      .navbar-toggler { flex-shrink: 0; }
-
-      /* --- NEW: HIDE BRAND WHEN MENU IS OPEN --- */
-      /* This class 'menu-open' is added via JS below */
-      .navbar-custom.menu-open .navbar-brand {
-        display: none !important; /* Hide text */
-      }
-      
-      .navbar-custom.menu-open .container-fluid {
-        justify-content: flex-end; /* Push hamburger to right */
+        font-size: 1.15rem;
+        order: 1;
+        flex: 0 1 auto;
+        max-width: calc(100% - 50px);
+        padding-right: 10px;
       }
 
+      .navbar-toggler {
+        order: 2;
+      }
+
+      /* Collapse Menu Styling */
       .navbar-collapse {
-        margin-top: 0.5rem;
+        order: 3;
+        width: 100%;
+        flex-basis: 100%;
+        margin-top: 1rem;
         padding-top: 1rem;
-        border-top: 1px solid #f1f5f9;
-        max-height: 80vh; 
-        overflow-y: auto;
+        border-top: 1px solid #e2e8f0;
       }
 
-      .navbar-nav { text-align: center; gap: 8px; }
-      .nav-link { font-size: 1.1rem; padding: 8px 0 !important; }
-      
+      .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .nav-item {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-link {
+        font-size: 1rem;
+        padding: 0.75rem 1rem !important;
+        border-radius: 10px;
+        display: block;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        background: rgba(67, 56, 202, 0.08);
+      }
+
       .btn-nav-cta {
         width: 100%;
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 5px;
-        padding: 10px !important;
+        padding: 0.85rem 1.5rem !important;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        border-radius: 12px;
       }
 
-      /* Content Sizing */
-      .hero-text-container { padding-left: 0; margin-top: 2rem; text-align: center; }
-      .lead-text { font-size: 1.05rem !important; text-align: justify; }
-      .ncvrt-heading, .aim-heading, .section-title-center { font-size: 2rem !important; text-align: center; }
-      .ncvrt-content, .aim-text { font-size: 1rem !important; }
-      .section-ncvrt, .section-aim, .section-interview { padding: 3rem 0; }
-      .image-wrapper { margin: 0 10px; }
-
-      /* --- FOOTER ALIGNMENT FIX --- */
-      .footer-section { 
-        text-align: center !important; 
-        padding: 3rem 0 2rem 0;
+      /* Ensure proper stacking */
+      .ms-lg-3 {
+        margin-left: 0 !important;
       }
-      .footer-brand { display: block; margin: 0 auto 1rem auto; }
-      
-      /* Reset list padding to ensure perfect centering */
-      .footer-links {
-        padding-left: 0; 
+    }
+
+    @media (max-width: 576px) {
+      .navbar-custom {
+        width: 90%;
+        padding: 0.65rem 1rem;
       }
 
-      .social-links {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem;
-      }
-      
-      .footer-links li {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      .navbar-brand {
+        font-size: 1rem;
       }
 
-      .col-lg-4.d-flex { align-items: center !important; }
-      
-      /* Stack Icon and Text Centered */
-      .footer-contact li {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center; 
-        text-align: center;
-        gap: 8px;
-        margin-bottom: 1.5rem;
+      .navbar-toggler-icon {
+        width: 22px;
+        height: 22px;
       }
-      
-      .contact-icon-box {
-        margin-bottom: 0;
-        width: 40px; 
-        height: 40px;
-        background: rgba(255,255,255,0.1); 
-      }
-      
-      .footer-section .col-lg-4 { margin-bottom: 2rem; }
     }
 
 
@@ -498,7 +492,7 @@
     }
 
     .social-btn:hover {
-      background: #E1306C; /* Instagram Color */
+      background: #E1306C;
       transform: translateY(-3px);
       color: white;
     }
@@ -577,6 +571,106 @@
       color: #64748b;
       font-size: 0.9rem;
     }
+
+    /* Mobile Footer Adjustments */
+    @media (max-width: 991px) {
+      .footer-section { 
+        text-align: center;
+        padding: 3rem 0 2rem 0;
+      }
+      
+      .footer-brand { 
+        display: block; 
+        margin: 0 auto 1rem auto; 
+      }
+      
+      .footer-desc {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .footer-links {
+        padding-left: 0; 
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      
+      .footer-links li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footer-links a::before {
+        display: none;
+      }
+
+      .col-lg-4.d-flex { 
+        align-items: center;
+        justify-content: center;
+      }
+
+      .col-lg-4.d-flex > div {
+        width: 100%;
+      }
+      
+      .footer-contact li {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        text-align: center;
+        gap: 8px;
+        margin-bottom: 1.5rem;
+      }
+      
+      .contact-icon-box {
+        margin-bottom: 0;
+        width: 40px; 
+        height: 40px;
+        background: rgba(255,255,255,0.1); 
+      }
+      
+      .footer-section .col-lg-4 { 
+        margin-bottom: 2.5rem; 
+      }
+
+      .footer-heading {
+        text-align: center;
+      }
+
+      .hero-text-container { 
+        padding-left: 0; 
+        margin-top: 2rem; 
+        text-align: center; 
+      }
+      
+      .lead-text { 
+        font-size: 1rem !important; 
+        text-align: justify; 
+      }
+      
+      .ncvrt-heading, .aim-heading, .section-title-center { 
+        font-size: 2rem !important; 
+        text-align: center; 
+      }
+      
+      .ncvrt-content, .aim-text { 
+        font-size: 1rem !important; 
+      }
+      
+      .section-ncvrt, .section-aim, .section-interview { 
+        padding: 3rem 0; 
+      }
+      
+      .image-wrapper { 
+        margin: 0 10px; 
+      }
+    }
   </style>
 </head>
 <body>
@@ -586,17 +680,17 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="./index.html">Raja Vocational Training Centre</a>
         
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-          <ul class="navbar-nav ms-auto align-items-center">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item"><a class="nav-link active" href="/index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="/course.html">Courses</a></li>
             <li class="nav-item"><a class="nav-link" href="/fas.html">Facilities</a></li>
-            <li class="nav-item ms-lg-3 w-100-mobile">
+            <li class="nav-item ms-lg-3">
               <a class="nav-link btn-nav-cta" href="/contact.html">Contact Us</a>
             </li>
           </ul>
@@ -625,13 +719,13 @@
 
         <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
           <div class="hero-text-container">
-            <span class="hero-label">Welcome to RVTC</span>
+            <span class="hero-label">Welcome to RajaVTC</span>
             <p class="lead-text">
               விருதுநகர் மாவட்டம் ஸ்ரீவில்லிபுத்தூரில் இயங்கி வரும் நமது ராஜா
               வொகேஷனல் ட்ரெயினிங் சென்டர் கடந்த 2006ம் ஆண்டு முதல் ஓய்வு பெற்ற
-              சேர்மன் இன்னாசி முத்து, ஆசிரியை தெரஸ் அவர்களால் தொடங்கப்பட்டு
-              உயர்திரு சேர்மன் கிறிஸ்டோபர் சேவியர் அவர்களால் இன்று வரை
-              சிறப்பாக செயல்பட்டு வருகிறது.
+              சேர்மன் இன்னாசி முத்து, ஆசிரியை தெரேச அவர்களால் தொடங்கபட்டு
+              உயர்திர சேர்மன் கிறிஸ்டோபர் சேவியர் அவர்களால் இன்று வரை
+              சிறப்பாக செயல்படுத்து வருகிறது.
             </p>
             <a href="./files/about.html" class="btn-explore">
               Explore Our Story
@@ -811,19 +905,6 @@
         navbar.classList.remove('scrolled');
       }
     });
-
-    // --- NEW: Toggle Logic to hide Brand Name when menu is open ---
-    const navCollapse = document.getElementById('navbarContent');
-    const navbar = document.querySelector('.navbar-custom');
-
-    if(navCollapse && navbar) {
-      navCollapse.addEventListener('show.bs.collapse', function () {
-        navbar.classList.add('menu-open');
-      });
-      navCollapse.addEventListener('hide.bs.collapse', function () {
-        navbar.classList.remove('menu-open');
-      });
-    }
   </script>
 </body>
 </html>
